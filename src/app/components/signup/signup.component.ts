@@ -42,22 +42,23 @@ export class SignupComponent {
   addNew(username:HTMLInputElement, email :HTMLInputElement, password : HTMLInputElement) {
     const url = this.constants.API_ENDPOINT+`/disney`;
     if (email.value && password.value) {
-      this.http.post(url, {
-        email: email.value,
-        password: password.value
-      }).subscribe((data: any) => {
-        if (data == null) {
-          this.http.post(url, {
-            username: username.value,
-            email: email.value,
-            password: password.value
-          }).subscribe((data: any) => {
-            console.log(data);
-          });
-        } else {
-          console.log('มีเเล้วนะจ๊ะ');
-          
+      this.http.get(url + "/email", {
+        params: {
+          email: username.value
         }
+      }).subscribe((data: any) => {
+          console.log(data);
+          if (data == null || (Array.isArray(data) && data.length === 0)){
+              this.http.post(url, {
+              username: username.value,
+              email: email.value,
+              password: password.value
+              }).subscribe((data: any) => {
+                console.log(data);
+              });
+          } else {
+            console.log('มีเเล้วนะจ๊ะ');
+          } 
       });
     }
 
