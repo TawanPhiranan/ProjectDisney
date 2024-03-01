@@ -22,12 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class LoginComponent {
 
-  email: string = '';
-  password: string = '';
-
   id: any;
+  type: any;
   constructor(private constants: Constants, private http: HttpClient, private router: Router) { }
-
   login(email: HTMLInputElement, password: HTMLInputElement) {
     const url = this.constants.API_ENDPOINT + `/disney/login`;
     if (email.value && password.value) {
@@ -35,14 +32,19 @@ export class LoginComponent {
         email: email.value,
         password: password.value
       }).subscribe((data: any) => {
-        if (data && data.message === "Match found") {
+        console.log(data);
+        
+        if (data && data.message === "Match found" ) {
+          const userID = data.result[0].userID;
+          const typeID = data.result[0].typeID;
           console.log("Login successful");
-          this.router.navigate(['/main'], { queryParams: { id: this.id } });
-          // if (data.typeID === 1) {
-          //   this.router.navigate(['/main'], { queryParams: { id: this.id } });
-          // } else if (data.typeID === 2) {
-          //   this.router.navigate(['/adminMember']);
-          // }
+          console.log(data.result);
+          if (typeID === 1) {
+            this.router.navigate(['/main'], { queryParams: { id: userID,type: typeID} });
+          } else if (typeID === 2) {
+              this.router.navigate(['/adminMember']);
+            }
+          
         } else {
           console.log("Email or password is incorrect");
           this.router.navigate(['/']);
@@ -53,3 +55,11 @@ export class LoginComponent {
 
 
 }
+
+
+
+   // if (data.typeID === 1) {
+          //   this.router.navigate(['/main'], { queryParams: { id: this.id } });
+          // } else if (data.typeID === 2) {
+          //   this.router.navigate(['/adminMember']);
+          // }

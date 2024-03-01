@@ -28,15 +28,39 @@ export class SignupComponent {
 
   constructor(private constants: Constants, private http: HttpClient) {}
 
+  // addNew(username:HTMLInputElement, email :HTMLInputElement, password : HTMLInputElement) {
+  //   const url = this.constants.API_ENDPOINT+`/disney`;
+  //   this.http.post(url, {
+  //     username: username.value,
+  //     email: email.value,
+  //     password: password.value
+  //   }).subscribe((data: any) => {
+  //     console.log(data);
+  //   });
+  // }
+
   addNew(username:HTMLInputElement, email :HTMLInputElement, password : HTMLInputElement) {
     const url = this.constants.API_ENDPOINT+`/disney`;
-    this.http.post(url, {
-      username: username.value,
-      email: email.value,
-      password: password.value
-    }).subscribe((data: any) => {
-      console.log(data);
-    });
+    if (email.value && password.value) {
+      this.http.post(url, {
+        email: email.value,
+        password: password.value
+      }).subscribe((data: any) => {
+        if (data == null) {
+          this.http.post(url, {
+            username: username.value,
+            email: email.value,
+            password: password.value
+          }).subscribe((data: any) => {
+            console.log(data);
+          });
+        } else {
+          console.log('มีเเล้วนะจ๊ะ');
+          
+        }
+      });
+    }
+
   }
 }
 
