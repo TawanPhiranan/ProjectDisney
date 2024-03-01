@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+  @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Prompt', sans-serif; }
+
+body {
+  background-image: url("https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/71D40BAF2BD52323521A3CDA28F05F68890D569684232D6607597B7C2502DCA6/scale?width=2880&aspectRatio=1.78&format=jpeg");
+  background-size: cover; /* ปรับขนาดรูปภาพให้เต็มพื้นที่ของ body */
+  background-attachment: fixed; /* รักษาพื้นหลังในตำแหน่งเดิมเมื่อเลื่อนหน้าจอ */
+}
+.body_login {
+  background-color: #ebe6e0;
+  display: flex;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

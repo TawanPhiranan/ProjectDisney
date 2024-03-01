@@ -1,0 +1,47 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  background-color: #ebe6e0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.btn {
+  margin-right: 35px;
+  font-size: large;
+}
+
+
+h3 {
+  margin: 0;
+}
+
+.member {
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-bottom: 8%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.36);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 2%;
+  align-items: center;
+}
+
+.member1 {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}

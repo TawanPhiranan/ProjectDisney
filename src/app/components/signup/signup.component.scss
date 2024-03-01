@@ -1,0 +1,42 @@
+body {
+    background-color: #ebe6e0;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    width: 101vw;
+    height: 100vh;
+    justify-content: flex-start;
+    background-image: url('https://img.buzzfeed.com/store-an-image-prod-us-east-1/-RfzfaspA.png?output-format=jpg&output-quality=auto');
+
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // padding: 30px;
+}
+
+.btn {
+    border-radius: 20px;
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+}
+
+.example-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    // width: 25vw;
+    width: 70%;
+    // margin-right: 30px;
+    // margin-left: 30px;
+
+}

@@ -1,0 +1,64 @@
+// body {
+//     background-image: url('https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/71D40BAF2BD52323521A3CDA28F05F68890D569684232D6607597B7C2502DCA6/scale?width=2880&aspectRatio=1.78&format=jpeg');
+//     background-size: cover;
+//     /* ปรับขนาดรูปภาพให้เต็มพื้นที่ของ body */
+//     background-attachment: fixed;
+//     /* รักษาพื้นหลังในตำแหน่งเดิมเมื่อเลื่อนหน้าจอ */
+// }
+
+.toolbar {
+    background-color: #ebe6e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-toolbar {
+    background-color: #ebe6e0;
+    // color: white;
+    position: fixed;
+    top: 0;
+}
+
+.btn {
+    margin-right: 35px;
+    font-size: large;
+}
+
+.allcard {
+    background-color: #2d2d2d90;
+    display: flex;
+    margin-left: 100px;
+    margin-right: 100px;
+    border-radius: 10px;
+}
+
+.on_card{
+   padding: 30px;
+}
+
+.example-card {
+    max-width: 100%;
+    flex: 1; 
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: rgba(250, 235, 215, 0);
+    color: aliceblue;
+}
+  
+.header-image {
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+    width: 60px; /* ปรับขนาดตามที่ต้องการ */
+    height: 60px; /* ปรับขนาดตามที่ต้องการ */
+}
+
+ 
