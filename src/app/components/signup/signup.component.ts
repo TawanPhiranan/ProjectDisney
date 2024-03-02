@@ -28,17 +28,6 @@ export class SignupComponent {
 
   constructor(private constants: Constants, private http: HttpClient) {}
 
-  // addNew(username:HTMLInputElement, email :HTMLInputElement, password : HTMLInputElement) {
-  //   const url = this.constants.API_ENDPOINT+`/disney`;
-  //   this.http.post(url, {
-  //     username: username.value,
-  //     email: email.value,
-  //     password: password.value
-  //   }).subscribe((data: any) => {
-  //     console.log(data);
-  //   });
-  // }
-
   addNew(username:HTMLInputElement, email :HTMLInputElement, password : HTMLInputElement) {
     const url = this.constants.API_ENDPOINT+`/disney`;
     if (email.value && password.value) {
@@ -60,6 +49,7 @@ export class SignupComponent {
             console.log('มีเเล้วนะจ๊ะ');
           } 
       });
+      
     }
 
   }

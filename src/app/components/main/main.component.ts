@@ -44,7 +44,6 @@ export class MainComponent implements OnInit {
     const url = this.constants.API_ENDPOINT + `/profile/main?id=${this.id}`;
     this.http.get(url).subscribe((data: any) => {
       this.user = data[0] as Disney;
-      // console.log(this.user);
     });
   }
 

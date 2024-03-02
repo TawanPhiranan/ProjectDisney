@@ -1,0 +1,87 @@
+<body>
+  <mat-toolbar>
+    <img
+      src="https://www.pngall.com/wp-content/uploads/5/Walt-Disney-Logo-Background-PNG.png"
+      width="100px"
+    />
+    <span class="example-spacer"></span>
+    <button mat-button class="btn">
+      <span>Vote</span>
+    </button>
+    <button mat-button class="btn">
+      <span>Rank</span>
+    </button>
+    <button mat-button class="btn">
+      <!-- <div *ngIf="user">
+            <span>{{ user.username }}</span>
+          </div> -->
+      <span>Username</span>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+  <!-- Back -->
+  <div
+    style="padding-top: 100px; padding-left: 3%; color: #ffffff; width: 60px"
+  >
+    <a (click)="goBack()" style="cursor: pointer">
+      <h3>< Back</h3>
+    </a>
+  </div>
+
+  <!-- card -->
+  <div class="edit">
+    <div class="card">
+      <div class="imgDetails">
+        <input class="example-form-field" matInput #search />
+        <img
+          src="https://i.pinimg.com/736x/1f/60/a9/1f60a98395a95b4a2b49600f954fc127.jpg"
+          width="300px"
+          alt=""
+        />
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <button
+            mat-icon-button
+            style="color: red;"
+            aria-label="Example icon-button with share icon"
+          >
+            <mat-icon>favorite</mat-icon> 
+          </button>
+          <span style="color: #ffffff;">88</span>&nbsp;&nbsp;&nbsp;
+          <span style="color: #ffffff;">(คลิกที่รูปเพื่อแก้ไข)</span>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="btn1">
+          <button mat-raised-button color="primary">
+            <span>Delete</span>
+          </button>
+          <button mat-raised-button color="primary">
+            <span>Save</span>
+          </button>
+        </div>
+        <div class="card2">
+          <div class="incard2">
+            <span>อันดับปัจจุบัน</span>
+            <span> 14 </span>
+          </div>
+          <div class="incard2">
+            <span>อันดับก่อนหน้า</span>
+            <span> 14 </span>
+          </div>
+          <div class="incard2">
+            <span>สรุปผล</span>
+            <span> - </span>
+          </div>
+          <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore neque velit eaque dolore error nesciunt optio rerum ratione laborum minima? Deserunt assumenda, nobis alias nam cumque culpa! Est, aut! Velit?</p> -->
+        </div>
+        <div class="graph"></div>
+      </div>
+    </div>
+  </div>
+</body>
