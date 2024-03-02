@@ -21,9 +21,9 @@
 
 .mat-toolbar {
     background-color: #ebe6e0;
-    // color: white;
     position: fixed;
     top: 0;
+    z-index: 1000;
 }
 
 .btn {
@@ -50,6 +50,7 @@
     margin-right: 20px;
     background-color: rgba(250, 235, 215, 0);
     color: aliceblue;
+    display: flex;
 }
   
 .header-image {
@@ -61,4 +62,11 @@
     height: 60px; /* ปรับขนาดตามที่ต้องการ */
 }
 
+.imgPro {
+    object-fit: cover;
+    object-position: center;
+    width: 300px; /* ปรับขนาดตามที่ต้องการ */
+    height: 350px; /* ปรับขนาดตามที่ต้องการ */
+    padding: 10px;
+  }
  

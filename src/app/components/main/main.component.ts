@@ -21,11 +21,16 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class MainComponent implements OnInit {
 
+
   id: any;
   disneys: Disney[] = [];
   user: any;
+  img1: any;
+  img2: any;
+
 
   constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants, private router: Router) {
+
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -33,6 +38,7 @@ export class MainComponent implements OnInit {
       // console.log(this.id);
       this.callApi();
     });
+    this.UrlAll();
   }
   callApi(): void {
     const url = this.constants.API_ENDPOINT + `/profile/main?id=${this.id}`;
@@ -49,9 +55,19 @@ export class MainComponent implements OnInit {
     this.router.navigate([route], { queryParams });
   }
 
-  // UrlAll(){
-  //   const url = this.constants.API_ENDPOINT + `/profile/main?id=${this.id}`;
-  // }
+  UrlAll() {
+    const url = this.constants.API_ENDPOINT + `/profile/image`;
+    this.http.get(url).subscribe((data: any) => {
+      this.img1 = data[this.randomVote(data)];
+      do {
+        this.img2 = data[this.randomVote(data)];
+      } while (this.img2 === this.img1);
+    });
+  }
+  
+  randomVote(array: any[]): number {
+    return Math.floor(Math.random() * array.length);
+  }
 
   goBack(): void {
     this.location.back();
