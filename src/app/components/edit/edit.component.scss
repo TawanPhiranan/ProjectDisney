@@ -1,0 +1,88 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.mat-toolbar {
+  background-color: #ebe6e0;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.btn {
+  margin-right: 35px;
+  font-size: large;
+}
+
+.card {
+  background-color: rgba(53, 53, 53, 0.563);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  //   justify-content: center;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
+  padding-bottom: 3%;
+
+  //   align-items: center;
+}
+
+.example-form-field {
+  border: 0;
+  border-radius: 10px;
+  height: 50px;
+  padding: 0 20px;
+  width: 260px;
+}
+
+/////////////////////////
+.edit {
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-bottom: 8%;
+  display: flex;
+  align-items: center;
+}
+.btn1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-bottom: 3%;
+}
+
+.imgDetails {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10%;
+}
+
+.card2 {
+  background-color: rgba(255, 255, 255, 0.634);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+//   width: 100%;
+  padding: 3%;
+}
+
+.rank {
+//   align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+img {
+  padding-top: 5%;
+}
+.incard2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3{
+    margin: 0;
+}

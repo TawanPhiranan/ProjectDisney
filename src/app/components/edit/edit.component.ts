@@ -4,20 +4,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule, Location } from '@angular/common';
 import { Disney } from '../../model/disney_get_res';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
-
-
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-edit',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatToolbarModule, RouterOutlet, RouterModule, HttpClientModule],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss',
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatToolbarModule],
+  templateUrl: './edit.component.html',
+  styleUrl: './edit.component.scss'
 })
-export class ProfileComponent {
+export class EditComponent {
 
   id: any;
   disneys: Disney[] = [];
@@ -43,15 +41,5 @@ export class ProfileComponent {
   goBack(): void {
     this.location.back();
   }
-
-  // imgFirebase(){
-  //   const url = this.constants.API_ENDPOINT+`/upload`;
-
-  // }
-
-  // imgDB(){
-
-  // }
-
 
 }
