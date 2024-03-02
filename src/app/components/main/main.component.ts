@@ -29,14 +29,15 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
-      console.log(this.id);
+      // console.log(this.id);
+      this.callApi();
     });
   }
-  // callApi(): void {
-  //   const url = this.constants.API_ENDPOINT+`/main&=${this.id}`;
-  //   this.http.get(url).subscribe((data: any) => {
-  //     this.user = data as Disney;
-  //     console.log(this.user);
-  //   });
-  // }
+  callApi(): void {
+    const url = this.constants.API_ENDPOINT+`/profile/main?id=${this.id}`;
+    this.http.get(url).subscribe((data: any) => {
+      this.user = data[0] as Disney;
+      // console.log(this.user);
+    });
+  }
 }

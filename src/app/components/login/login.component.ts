@@ -32,15 +32,14 @@ export class LoginComponent {
         email: email.value,
         password: password.value
       }).subscribe((data: any) => {
-        console.log(data);
-        
+        // console.log(data);
         if (data && data.message === "Match found" ) {
           const userID = data.result[0].userID;
           const typeID = data.result[0].typeID;
           console.log("Login successful");
-          console.log(data.result);
+          // console.log(data.result);
           if (typeID === 1) {
-            this.router.navigate(['/main'], { queryParams: { id: userID,type: typeID} });
+            this.router.navigate(['/main'], { queryParams: { id: userID} });
           } else if (typeID === 2) {
               this.router.navigate(['/adminMember']);
             }
