@@ -3,6 +3,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule, Location } from '@angular/common';
+import { Constants } from '../../config/constants';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -12,8 +14,20 @@ import { CommonModule, Location } from '@angular/common';
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
-  constructor(private location: Location) {}
+  constructor(private constants: Constants, private http: HttpClient, private location: Location) {}
+
   goBack(): void {
     this.location.back();
   }
+
+  // imgFirebase(){
+  //   const url = this.constants.API_ENDPOINT+`/upload`;
+
+  // }
+
+  // imgDB(){
+
+  // }
+
+
 }
