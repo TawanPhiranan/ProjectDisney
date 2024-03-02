@@ -12,8 +12,10 @@
       <span>Rank</span>
     </button>
     <button mat-button class="btn">
-      <span>Username</span>
-    </button>
+      <div *ngIf="user">
+           <span>{{ user.username }}</span>
+      </div>
+  </button>
     <button
       mat-icon-button
       class="example-icon"

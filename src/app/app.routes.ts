@@ -6,9 +6,9 @@ import { MainComponent } from './components/main/main.component';
 import { AdminMemberComponent } from './components/admin-member/admin-member.component';
 
 export const routes: Routes = [
-    {path: '', component: LoginComponent },
+    {path: 'login', component: LoginComponent },
     {path: 'signup', component: SignupComponent },
-    {path: 'main', component: MainComponent},
+    {path: '', component: MainComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'adminMember', component: AdminMemberComponent},
 ];

@@ -39,7 +39,7 @@ export class LoginComponent {
           console.log("Login successful");
           // console.log(data.result);
           if (typeID === 1) {
-            this.router.navigate(['/main'], { queryParams: { id: userID} });
+            this.router.navigate(['/'], { queryParams: { id: userID} });
           } else if (typeID === 2) {
               this.router.navigate(['/adminMember']);
             }
