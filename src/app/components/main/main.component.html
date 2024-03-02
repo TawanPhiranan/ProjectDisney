@@ -2,20 +2,27 @@
     <mat-toolbar>
         <img src="https://www.pngall.com/wp-content/uploads/5/Walt-Disney-Logo-Background-PNG.png" width="100px" />
         <span class="example-spacer"></span>
-        <button mat-button class="btn">
-            <span>Vote</span>
-        </button>
-        <button mat-button class="btn">
-            <span>Rank</span>
-        </button> 
-        <button mat-button class="btn">
-            <div *ngIf="user">
-                 <span>{{ this.user.username}}</span>
-            </div>
-         </button>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-            <mat-icon>logout</mat-icon>
-        </button>
+        <ng-container *ngIf="!user">
+            <button mat-button class="btn" routerLink="/login">
+                <span>Login</span>
+            </button>
+        </ng-container>
+        <ng-container *ngIf="user">
+            <button mat-button class="btn">
+                <span>Vote</span>
+            </button>
+            <button mat-button class="btn">
+                <span>Rank</span>
+            </button>
+            <button mat-button class="btn">
+                <div *ngIf="user">
+                    <span>{{ user.username }}</span>
+                </div>
+            </button>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </ng-container>
     </mat-toolbar>
     <div style="padding: 10%;">
         <div class="allcard">
@@ -29,7 +36,8 @@
                     <!-- card 1 -->
                     <mat-card class="example-card">
                         <mat-card-header>
-                            <div mat-card-avatar class="header-image">
+                            <div mat-card-avatar class="header-image" (click)="Choose_route()">
+
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpRo7x5cX7tqnx0mtQ_SPJFE9bhO5Y5jxesS5gF7trtgcNB8gVVPEnXC1rbhsQ4LWt5GI&usqp=CAU"
                                     width="60px">
                             </div>
@@ -56,7 +64,7 @@
                     <!-- card 2 -->
                     <mat-card class="example-card" style="margin-left: 20px;">
                         <mat-card-header>
-                            <div mat-card-avatar class="header-image">
+                            <div mat-card-avatar class="header-image" (click)="Choose_route()">
                                 <img src="https://pbs.twimg.com/media/Fv-asGGaAAYAlgM.jpg" width="60px">
                             </div>
                             <div style="font-size: xx-large; margin-left: 20px;">
