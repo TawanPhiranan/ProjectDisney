@@ -60,7 +60,9 @@ export class SignupComponent {
             console.log('มีเเล้วนะจ๊ะ');
           } 
       });
+      
     }
+
   }
 }
 
