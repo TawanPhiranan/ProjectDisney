@@ -43,8 +43,8 @@ export class MainComponent implements OnInit {
   user2: any;
   user1: any;
   login: boolean = false;
-  scord1: any;
-  scord2: any;
+  scord1: number = 0;
+  scord2: number = 0;
 
 
   constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants,
@@ -111,12 +111,12 @@ export class MainComponent implements OnInit {
   vote(winnerImgId: number, loserImgId: number, check: number) {
     const url = this.constants.API_ENDPOINT + "/vote";
     const K = 32; // K-factor for Elo Rating
-    let scord1 = 1000; // Initial score for img1
-    let scord2 = 1000; // Initial score for img2
+    // let scord1 = 0; // Initial score for img1
+    // let scord2 = 0; // Initial score for img2
 
     // Calculate winScore and loseScore
-    const winScore = 1 / (1 + 10 ** ((scord2 - scord1) / 400));
-    const loseScore = 1 / (1 + 10 ** ((scord1 - scord2) / 400));
+    const winScore = 1 / (1 + 10 ** ((this.scord2 - this.scord1) / 400));
+    const loseScore = 1 / (1 + 10 ** ((this.scord1 - this.scord2) / 400));
 
     if (check == 1) {
       // Calculate new ratings

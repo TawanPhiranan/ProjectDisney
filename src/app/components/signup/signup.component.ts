@@ -14,26 +14,26 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule, 
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule,
     HttpClientModule, RouterOutlet, RouterModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
   username: string = '';
-  email:    string = '';
+  email: string = '';
   password: string = '';
-  imgUser:  string = '';
-  typeID:   number = 0;
+  imgUser: string = '';
+  typeID: number = 0;
 
-  constructor(private constants: Constants, private http: HttpClient) {}
+  constructor(private constants: Constants, private http: HttpClient) { }
 
   addNew(username:HTMLInputElement, email :HTMLInputElement, password : HTMLInputElement) {
     const url = this.constants.API_ENDPOINT+`/disney`;
     if (email.value && password.value) {
       this.http.get(url + "/email", {
         params: {
-          email: username.value
+          email: email.value
         }
       }).subscribe((data: any) => {
           console.log(data);
@@ -49,9 +49,7 @@ export class SignupComponent {
             console.log('มีเเล้วนะจ๊ะ');
           } 
       });
-      
     }
-
   }
 }
 

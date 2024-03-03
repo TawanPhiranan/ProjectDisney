@@ -31,7 +31,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button (click)="addNew(username, email, password)" class="btn"
+          <button mat-raised-button (click)="addNew(username, email, password)" routerLink="/login" class="btn"
             style="background-color: #444; color: #fff" [disabled]="!username.value || !email.value || !password.value">
             Submit
           </button>
