@@ -43,10 +43,12 @@ export class MainComponent implements OnInit {
   user2: any;
   user1: any;
   login: boolean = false;
+  scord1: any;
+  scord2: any;
 
 
-  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants, 
-    private router: Router) {}
+  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants,
+    private router: Router) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
@@ -82,10 +84,11 @@ export class MainComponent implements OnInit {
       this.imgid1 = this.img1.imgID;
       do {
         this.img2 = data[this.randomVote(data)];
-      } while (this.img2 === this.img1);     
+      } while (this.img2 === this.img1);
       this.imgid2 = this.img2.imgID;
 
       this.userPro();
+
     });
   }
 
@@ -101,19 +104,58 @@ export class MainComponent implements OnInit {
     this.http.get(url1).subscribe((data: any) => {
       this.user2 = data[0] as Disney;
       // console.log(this.user2);
-      
+
     });
   }
+
+  vote(winnerImgId: number, loserImgId: number, check: number) {
+    const url = this.constants.API_ENDPOINT + "/vote";
+    const K = 32; // K-factor for Elo Rating
+    let scord1 = 1000; // Initial score for img1
+    let scord2 = 1000; // Initial score for img2
+
+    // Calculate winScore and loseScore
+    const winScore = 1 / (1 + 10 ** ((scord2 - scord1) / 400));
+    const loseScore = 1 / (1 + 10 ** ((scord1 - scord2) / 400));
+
+    if (check == 1) {
+      // Calculate new ratings
+      const RatingA = K * (1 - winScore);
+      console.log(RatingA);
+
+      const RatingB = K * (0 - loseScore);
+      console.log(RatingB);
+
+
+      // Send HTTP POST requests to update ratings
+      this.http.post(url + '/win', {
+        imgID: winnerImgId,
+        score: RatingA
+      }).subscribe((data: any) => {
+        console.log(data);
+      });
+
+      this.http.post(url + '/lose', {
+        imgID: loserImgId,
+        score: RatingB
+      }).subscribe((data: any) => {
+        console.log(data);
+      });
+    }
+  }
+
+
 
   randomVote(array: any[]): number {
     return Math.floor(Math.random() * array.length);
   }
 
+
   logout() {
     this.login = false;
     this.router.navigate(['/'], { replaceUrl: true });
   }
-  
+
 
   goBack(): void {
     this.location.back();

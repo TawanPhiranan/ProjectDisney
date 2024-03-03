@@ -45,8 +45,8 @@
                                     <span>{{user1.username}}</span>
                                 </div>
                             </mat-card-header>
-                            <div style="display: flex; margin-left: 20px; ">
-                                <img mat-card-image src="{{img1.url}}" class="imgPro">
+                            <div style="display: flex; margin-left: 20px;">
+                                <img mat-card-image src="{{img1.url}}" class="imgPro" (click)="vote(imgid1, imgid2, 1)">
                             </div>
                             <mat-card-actions>
                                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorite"
@@ -72,7 +72,7 @@
                                 </div>
                             </mat-card-header>
                             <div style="display: flex; margin-left: 20px;">
-                                <img mat-card-image src="{{img2.url}}" class="imgPro">
+                                <img mat-card-image src="{{img2.url}}" class="imgPro"  (click)="vote(imgid2, imgid1, 1)"> 
                             </div>
                             <mat-card-actions>
                                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorite"
