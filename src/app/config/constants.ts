@@ -9,4 +9,3 @@ import { Injectable } from '@angular/core';
     public readonly API_ENDPOINT: string =  'http://localhost:3000';
 
   }
-  

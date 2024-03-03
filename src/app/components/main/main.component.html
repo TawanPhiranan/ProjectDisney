@@ -16,7 +16,7 @@
             </button>
             <button mat-button class="btn">
                 <div *ngIf="user">
-                    <span>{{ user.username }}</span>
+                  <span>{{ user.username }}</span>
                 </div>
             </button>
             <button mat-icon-button (click)="logout()" class="example-icon" aria-label="Example icon-button with share icon">
@@ -36,13 +36,13 @@
                     <!-- card 1 -->
                     <mat-card class="example-card">
                         <div *ngIf="img1">
-                            <mat-card-header>
+                            <mat-card-header  *ngIf="user1">
                                 <div mat-card-avatar class="header-image" (click)="Choose_route()">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpRo7x5cX7tqnx0mtQ_SPJFE9bhO5Y5jxesS5gF7trtgcNB8gVVPEnXC1rbhsQ4LWt5GI&usqp=CAU"
+                                    <img src="{{user1.imgUser}}"
                                         width="60px">
                                 </div>
                                 <div style="font-size: xx-large; margin-left: 20px;">
-                                    <span>IU</span>
+                                    <span>{{user1.username}}</span>
                                 </div>
                             </mat-card-header>
                             <div style="display: flex; margin-left: 20px; ">
@@ -63,12 +63,12 @@
                     <!-- card 2 -->
                     <mat-card class="example-card" style="margin-left: 100px;">
                         <div *ngIf="img2">
-                            <mat-card-header>
+                            <mat-card-header *ngIf="user2">
                                 <div mat-card-avatar class="header-image" (click)="Choose_route()">
-                                    <img src="https://pbs.twimg.com/media/Fv-asGGaAAYAlgM.jpg" width="60px">
+                                    <img src="{{user2.imgUser}}" width="60px">
                                 </div>
                                 <div style="font-size: xx-large; margin-left: 20px;">
-                                    <span>TEN</span>
+                                    <span>{{user2.username}}</span>
                                 </div>
                             </mat-card-header>
                             <div style="display: flex; margin-left: 20px;">
