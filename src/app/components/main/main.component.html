@@ -15,8 +15,8 @@
                 <span>Rank</span>
             </button>
             <button mat-button class="btn">
-                <div *ngIf="user">
-                  <span>{{ user.username }}</span>
+                <div *ngIf="user" (click)="Choose_route()">
+                    <span>{{ user.username }}</span>
                 </div>
             </button>
             <button mat-icon-button (click)="logout()" class="example-icon" aria-label="Example icon-button with share icon">
