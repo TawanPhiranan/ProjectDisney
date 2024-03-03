@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule, Location } from '@angular/common';
 import { Disney } from '../../model/disney_get_res';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
 
@@ -20,7 +20,10 @@ export class EditComponent {
   id: any;
   disneys: Disney[] = [];
   user: any;
-  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants) {
+  login: boolean = false;
+
+
+  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants,  private router: Router) {
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -40,6 +43,11 @@ export class EditComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  logout() {
+    this.login = false;
+    this.router.navigate(['/'], { replaceUrl: true });
   }
 
 }

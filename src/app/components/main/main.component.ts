@@ -9,13 +9,13 @@ import { HttpClient } from '@angular/common/http';
 import { Disney } from '../../model/disney_get_res';
 import { Constants } from '../../config/constants';
 import { HttpClientModule } from '@angular/common/http';
-
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-main',
   standalone: true,
   imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, MatCardModule, RouterModule,
-    RouterOutlet, HttpClientModule],
+    RouterOutlet, HttpClientModule, LoginComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
@@ -27,11 +27,11 @@ export class MainComponent implements OnInit {
   user: any;
   img1: any;
   img2: any;
+  login: boolean = false;
 
 
-  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants, private router: Router) {
-
-  }
+  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants, 
+    private router: Router) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
@@ -67,6 +67,12 @@ export class MainComponent implements OnInit {
   randomVote(array: any[]): number {
     return Math.floor(Math.random() * array.length);
   }
+
+  logout() {
+    this.login = false;
+    this.router.navigate(['/'], { replaceUrl: true });
+  }
+  
 
   goBack(): void {
     this.location.back();

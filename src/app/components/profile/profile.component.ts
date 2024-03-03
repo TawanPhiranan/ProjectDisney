@@ -6,7 +6,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Disney } from '../../model/disney_get_res';
 import { Constants } from '../../config/constants';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 
 
 
@@ -22,8 +22,9 @@ export class ProfileComponent {
   id: any;
   disneys: Disney[] = [];
   user: any;
-  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants) {
-  }
+  login: boolean = false;
+  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants, 
+    private router: Router) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
@@ -39,19 +40,12 @@ export class ProfileComponent {
       console.log(this.user);
     });
   }
-
+  logout() {
+    this.login = false;
+    this.router.navigate(['/'], { replaceUrl: true });
+  }
+  
   goBack(): void {
     this.location.back();
   }
-
-  // imgFirebase(){
-  //   const url = this.constants.API_ENDPOINT+`/upload`;
-
-  // }
-
-  // imgDB(){
-
-  // }
-
-
 }

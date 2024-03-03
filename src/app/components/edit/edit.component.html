@@ -1,9 +1,6 @@
 <body>
   <mat-toolbar>
-    <img
-      src="https://www.pngall.com/wp-content/uploads/5/Walt-Disney-Logo-Background-PNG.png"
-      width="100px"
-    />
+    <img src="https://www.pngall.com/wp-content/uploads/5/Walt-Disney-Logo-Background-PNG.png" width="100px" />
     <span class="example-spacer"></span>
     <button mat-button class="btn">
       <span>Vote</span>
@@ -17,20 +14,15 @@
           </div> -->
       <span>Username</span>
     </button>
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon"
-    >
+    <button mat-icon-button (click)="logout()" class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>logout</mat-icon>
-    </button>
+  </button>
   </mat-toolbar>
   <!-- Back -->
-  <div
-    style="padding-top: 100px; padding-left: 3%; color: #ffffff; width: 60px"
-  >
+  <div style="padding-top: 100px; padding-left: 3%; color: #ffffff; width: 60px">
     <a (click)="goBack()" style="cursor: pointer">
-      <h3>< Back</h3>
+      <h3>
+        < Back</h3>
     </a>
   </div>
 
@@ -39,18 +31,10 @@
     <div class="card">
       <div class="imgDetails">
         <input class="example-form-field" matInput #search />
-        <img
-          src="https://i.pinimg.com/736x/1f/60/a9/1f60a98395a95b4a2b49600f954fc127.jpg"
-          width="300px"
-          alt=""
-        />
+        <img src="https://i.pinimg.com/736x/1f/60/a9/1f60a98395a95b4a2b49600f954fc127.jpg" width="300px" alt="" />
         <div style="display: flex; flex-direction: row; align-items: center;">
-            <button
-            mat-icon-button
-            style="color: red;"
-            aria-label="Example icon-button with share icon"
-          >
-            <mat-icon>favorite</mat-icon> 
+          <button mat-icon-button style="color: red;" aria-label="Example icon-button with share icon">
+            <mat-icon>favorite</mat-icon>
           </button>
           <span style="color: #ffffff;">88</span>&nbsp;&nbsp;&nbsp;
           <span style="color: #ffffff;">(คลิกที่รูปเพื่อแก้ไข)</span>

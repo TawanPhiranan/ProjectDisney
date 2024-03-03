@@ -19,7 +19,7 @@
                     <span>{{ user.username }}</span>
                 </div>
             </button>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <button mat-icon-button (click)="logout()" class="example-icon" aria-label="Example icon-button with share icon">
                 <mat-icon>logout</mat-icon>
             </button>
         </ng-container>
