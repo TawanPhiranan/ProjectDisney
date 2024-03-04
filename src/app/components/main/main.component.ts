@@ -187,6 +187,7 @@ export class MainComponent implements OnInit {
   countdownInterval: any; // ตัวแปรสำหรับ interval
 
   startCountdown() {
+    this.countdown = 10;
     this.countdownInterval = setInterval(() => {
       if (this.countdown > 0) {
         this.countdown--;
