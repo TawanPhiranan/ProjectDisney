@@ -54,13 +54,14 @@ export class ProfileComponent {
       // console.log(this.id);
       this.callApi();
     });
+    this.showImg();
   }
 
   callApi(): void {
     const url = this.constants.API_ENDPOINT + `/profile/main?id=${this.id}`;
     this.http.get(url).subscribe((data: any) => {
       this.user = data[0] as Disney;
-      console.log(this.user);
+      // console.log(this.user);
     });
   }
 
@@ -107,22 +108,10 @@ export class ProfileComponent {
       })
       .subscribe((data: any) => {
         console.log(data);
-      });  
+      }); 
+      this.showImg();
+ 
   }
-
-  // addDBsc(){
-  //   const uploadDay = new Date().toISOString();
-  //     const dbUrl1 = this.constants.API_ENDPOINT + '/vote/newimg';
-  //   this.http
-  //     .post(dbUrl1, {
-  //       imgID: this.id, // ใช้ค่า id ที่ได้จาก queryParams
-  //       score:1000,
-  //       uploadDay: uploadDay,
-  //     })
-  //     .subscribe((data: any) => {
-  //       console.log(data);
-  //     });
-  // }
 
   //ล้างค่า
   resetInput() {
@@ -133,6 +122,20 @@ export class ProfileComponent {
   goBack(): void {
     this.location.back();
   }
+
+  urlShow : any;
+
+  //show url
+  showImg() {
+    const urll = this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
+    this.http.get(urll).subscribe((data: any) => {
+      this.urlShow = data;
+      // console.log(this.urlShow);
+    });
+  }
+
+  
+  
 
   
   

@@ -68,19 +68,6 @@ export class MainComponent implements OnInit {
     });
   }
 
-  // กำหนดเส้นทาง
-  Choose_route() {
-    const route = this.user ? '/profile' : '/login';
-    const queryParams = this.user ? { id: this.user.userID } : null;
-    this.router.navigate([route], { queryParams });
-  }
-  // Choose_route(userNumber: number) {
-  //   const userID = userNumber === 1 ? this.user1.userID : this.user2.userID;
-  //   const route = userID ? '/profile' : '/login';
-  //   const queryParams = userID ? { id: userID } : null;
-  //   this.router.navigate([route], { queryParams });
-  // }
-
   UrlAll() {
     const url = this.constants.API_ENDPOINT + `/profile/image`;
     this.http.get(url).subscribe((data: any) => {
@@ -90,13 +77,11 @@ export class MainComponent implements OnInit {
       //sum img1
       const urlImg1 = this.constants.API_ENDPOINT + `/vote/` + this.imgid1;
       this.http.get(urlImg1).subscribe((data: any) => {
-        this.scord1 = data[0].total_score;
+        this.scord1 = data[0].total_score.toFixed(2);
         if (this.scord1 == null) {
           this.scord1 = 0;
-        } else {
-          this.scord1 = parseFloat(this.scord1).toFixed(2);
         }
-        //console.log(this.scord1);
+        console.log(this.scord1);
       });
 
       do {
@@ -107,13 +92,11 @@ export class MainComponent implements OnInit {
       this.imgid2 = this.img2.imgID;
       const urlImg2 = this.constants.API_ENDPOINT + `/vote/` + this.imgid2;
       this.http.get(urlImg2).subscribe((data: any) => {
-        this.scord2 = data[0].total_score;
+        this.scord2 = data[0].total_score.toFixed(2);
         if (this.scord2 == null) {
           this.scord2 = 0;
-        } else {
-          this.scord2 = parseFloat(this.scord1).toFixed(2);
         }
-        //console.log(this.scord2); 
+        console.log(this.scord2);
       });
       this.userPro();
 
@@ -183,6 +166,8 @@ export class MainComponent implements OnInit {
 
 
   }
+
+  //เวลาในการสุ่ม
   countdown: number = 10; // เวลาที่เหลือในการรอ (วินาที)
   countdownInterval: any; // ตัวแปรสำหรับ interval
 
@@ -199,10 +184,22 @@ export class MainComponent implements OnInit {
 
 
   randomVote(array: any[]): number {
-
     return Math.floor(Math.random() * array.length);
   }
 
+
+  // กำหนดเส้นทาง
+  Choose_route() {
+    const route = this.user ? '/profile' : '/login';
+    const queryParams = this.user ? { id: this.user.userID } : null;
+    this.router.navigate([route], { queryParams });
+  }
+  // Choose_route(userNumber: number) {
+  //   const userID = userNumber === 1 ? this.user1.userID : this.user2.userID;
+  //   const route = userID ? '/profile' : '/login';
+  //   const queryParams = userID ? { id: userID } : null;
+  //   this.router.navigate([route], { queryParams });
+  // }
 
   logout() {
     this.login = false;
