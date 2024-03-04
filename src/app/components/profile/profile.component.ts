@@ -107,8 +107,22 @@ export class ProfileComponent {
       })
       .subscribe((data: any) => {
         console.log(data);
-      });
+      });  
   }
+
+  // addDBsc(){
+  //   const uploadDay = new Date().toISOString();
+  //     const dbUrl1 = this.constants.API_ENDPOINT + '/vote/newimg';
+  //   this.http
+  //     .post(dbUrl1, {
+  //       imgID: this.id, // ใช้ค่า id ที่ได้จาก queryParams
+  //       score:1000,
+  //       uploadDay: uploadDay,
+  //     })
+  //     .subscribe((data: any) => {
+  //       console.log(data);
+  //     });
+  // }
 
   //ล้างค่า
   resetInput() {

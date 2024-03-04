@@ -27,12 +27,12 @@
     <div style="padding: 10%;">
         <div class="allcard">
             <div class="on_card">
-                <div style="color: aliceblue;">
+                <div style="color: aliceblue;" >
                     <span style="font-size: xx-large;">Choose your favorite character image.</span><br>
                     <span style="font-size: medium;">เลือกภาพตัวละครที่คุณชื่นชอบ</span>
                 </div>
                 <br>
-                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;" *ngIf="canVote">
                     <!-- card 1 -->
                     <mat-card class="example-card">
                         <div *ngIf="img1">
@@ -51,7 +51,7 @@
                             <mat-card-actions>
                                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorite"
                                     style="color: red;"></mat-icon>
-                                <span> 88</span>
+                                <span> {{this.scord1}}</span>
                             </mat-card-actions>
                             <div style=" display: flex; font-size: x-large; margin-left: 100px;">
                                 <span>{{ img1.imgName}}</span>
@@ -77,13 +77,17 @@
                             <mat-card-actions>
                                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorite"
                                     style="color: red;"></mat-icon>
-                                <span> 98</span>
+                                <span> {{this.scord2}}</span>
                             </mat-card-actions>
                             <div style=" display: flex; font-size: x-large; margin-left: 100px;">
                                 <span>{{ img2.imgName}}</span>
                             </div>
                         </div>
                     </mat-card>
+                </div>
+                <div *ngIf="!canVote" class="load">
+                    <mat-progress-bar mode="buffer"></mat-progress-bar>
+                    <p>Please wait {{ countdown }} seconds before voting again.</p>
                 </div>
             </div>
         </div>

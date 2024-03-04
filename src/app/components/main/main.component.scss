@@ -39,34 +39,53 @@
     border-radius: 10px;
 }
 
-.on_card{
-   padding: 30px;
+.on_card {
+    padding: 30px;
+    width: 100%;
 }
 
 .example-card {
     max-width: 100%;
-    flex: 1; 
+    flex: 1;
     margin-left: 20px;
     margin-right: 20px;
     background-color: rgba(250, 235, 215, 0);
     color: aliceblue;
     display: flex;
 }
-  
+
 .header-image {
     border-radius: 50%;
     overflow: hidden;
     object-fit: cover;
     object-position: center;
-    width: 60px; /* ปรับขนาดตามที่ต้องการ */
-    height: 60px; /* ปรับขนาดตามที่ต้องการ */
+    width: 60px;
+    /* ปรับขนาดตามที่ต้องการ */
+    height: 60px;
+    /* ปรับขนาดตามที่ต้องการ */
 }
 
 .imgPro {
     object-fit: cover;
     object-position: center;
-    width: 300px; /* ปรับขนาดตามที่ต้องการ */
-    height: 350px; /* ปรับขนาดตามที่ต้องการ */
+    width: 300px;
+    /* ปรับขนาดตามที่ต้องการ */
+    height: 350px;
+    /* ปรับขนาดตามที่ต้องการ */
     padding: 10px;
-  }
- 
+}
+
+.load {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #d7c452;
+    font-size: medium;
+}
+
+:host ::ng-deep .mdc-linear-progress__buffer-dots {
+    background-color: #b5a43f !important; /* เปลี่ยนสีพื้นหลังเป็นสีที่ต้องการ */
+}
+
