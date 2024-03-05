@@ -107,7 +107,7 @@ export class MainComponent implements OnInit {
     // card 1 
     const url = this.constants.API_ENDPOINT + `/profile/idm?id=${this.imgid1}`;
     this.http.get(url).subscribe((data: any) => {
-      this.user1 = data[0] as Disney;
+      this.user1 = data[0] as Disney; 
       // console.log(this.user1);
     });
     // card 2

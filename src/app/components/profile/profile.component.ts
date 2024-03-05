@@ -85,14 +85,13 @@ export class ProfileComponent {
       const formData = new FormData();
       formData.append('file', selectedFile);
       this.response = await lastValueFrom(this.http.post(url1, formData));
-      console.log('File uploaded. Response:', this.response);
+      // console.log('File uploaded. Response:', this.response);
 
       const firebaseURL = this.response.url;
       console.log(firebaseURL);
       
       this.addDB(firebaseURL);
       this.resetInput();
-
     }
   }
 
@@ -104,13 +103,24 @@ export class ProfileComponent {
       .post(dbUrl, {
         userID: this.id, // ใช้ค่า id ที่ได้จาก queryParams
         url: url,
-        uploadDay: uploadDay,
+        uploadDay: uploadDay
       })
       .subscribe((data: any) => {
         console.log(data);
+        console.log(data.last_idx);
+        const dbUrl2 = this.constants.API_ENDPOINT + '/vote/newimg';
+        this.http.post(dbUrl2, {
+          imgID: data.last_idx
+        })
+        .subscribe((data: any) => {
+          console.log(data);
+        }); 
       }); 
-      this.showImg();
- 
+
+
+      setTimeout(() => {
+        this.showImg();
+      }, 3000);      
   }
 
   //ล้างค่า
@@ -133,10 +143,4 @@ export class ProfileComponent {
       // console.log(this.urlShow);
     });
   }
-
-  
-  
-
-  
-  
 }
