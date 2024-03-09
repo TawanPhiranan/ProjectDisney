@@ -77,7 +77,7 @@ export class MainComponent implements OnInit {
       //sum img1
       const urlImg1 = this.constants.API_ENDPOINT + `/vote/` + this.imgid1;
       this.http.get(urlImg1).subscribe((data: any) => {
-        this.scord1 = data[0].total_score.toFixed(2);
+        this.scord1 = data[0].total_score;
         if (this.scord1 == null) {
           this.scord1 = 0;
         }
@@ -92,7 +92,7 @@ export class MainComponent implements OnInit {
       this.imgid2 = this.img2.imgID;
       const urlImg2 = this.constants.API_ENDPOINT + `/vote/` + this.imgid2;
       this.http.get(urlImg2).subscribe((data: any) => {
-        this.scord2 = data[0].total_score.toFixed(2);
+        this.scord2 = data[0].total_score;
         if (this.scord2 == null) {
           this.scord2 = 0;
         }

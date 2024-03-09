@@ -21,9 +21,15 @@ export class RankingComponent {
   disneys: Disney[] = [];
   user: any;
   login: boolean = false;
+  rank : any;
 
 
-  constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants, private router: Router) {
+  constructor(
+    private route: ActivatedRoute, 
+    private location: Location, 
+    private http: HttpClient, 
+    private constants: Constants, 
+    private router: Router) {
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -31,6 +37,7 @@ export class RankingComponent {
       // console.log(this.id);
       this.callApi();
     });
+    this. rankScore();
   }
 
   callApi(): void {
@@ -41,14 +48,27 @@ export class RankingComponent {
     });
   }
 
+
+  rankScore(){
+    const Url = this.constants.API_ENDPOINT + '/vote/rank/score';
+    this.http.get(Url).subscribe((data: any) => {
+      this.rank = data;
+      console.log(this.rank);
+    });
+  }
+
+
   goBack(): void {
     this.location.back();
   }
 
+  
   logout() {
     this.login = false;
     this.router.navigate(['/'], { replaceUrl: true });
   }
+
+
 
 }
   
