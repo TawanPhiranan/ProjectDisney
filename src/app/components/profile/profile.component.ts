@@ -133,14 +133,14 @@ export class ProfileComponent {
     this.location.back();
   }
 
-  urlShow : any;
+  urlShow : any[] = [];
 
   //show url
   showImg() {
     const urll = this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
     this.http.get(urll).subscribe((data: any) => {
       this.urlShow = data;
-      // console.log(this.urlShow);
+      console.log(this.urlShow);
     });
   }
 }
