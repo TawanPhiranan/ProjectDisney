@@ -5,6 +5,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MainComponent } from './components/main/main.component';
 import { AdminMemberComponent } from './components/admin-member/admin-member.component';
 import { EditComponent } from './components/edit/edit.component';
+import { RankingComponent } from './components/ranking/ranking.component';
 
 export const routes: Routes = [
     {path: '', component: MainComponent},
@@ -13,4 +14,5 @@ export const routes: Routes = [
     {path: 'profile', component: ProfileComponent},
     {path: 'adminMember', component: AdminMemberComponent},
     {path: 'edit', component: EditComponent},
+    {path: 'ranking', component: RankingComponent},
 ];
