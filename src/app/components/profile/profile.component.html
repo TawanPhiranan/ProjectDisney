@@ -26,22 +26,26 @@
     </a>
   </div>
   <!-- <div *ngIf="urlShow"> -->
-  <div class="profile">
-    <!-- <div class="profile1"> -->
-    <div class="details">
-      <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" />
-      <div>
-        <span class="in">Username</span>
-        <input class="example-form-field" matInput #search />
-        <span class="in">Email</span>
-        <input class="example-form-field" matInput #search />
-        <span class="in">Password</span>
-        <input class="example-form-field" matInput #search />
-      </div>
-      <button mat-raised-button color="primary" style="margin-top: 5%">
-        <span>Save</span>
-      </button>
-    </div>
+    <div class="profile">
+      <!-- <div class="profile1"> -->
+        <ng-container *ngFor="let show of urlShow; let i = index">
+          <div *ngIf="i === 0" class="details">
+              <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" />
+              <div>
+                  <span class="in">Username</span>
+                  <input class="example-form-field" matInput [(ngModel)]="show.username" name="username" />
+                  <span class="in">Email</span>
+                  <input class="example-form-field" matInput [(ngModel)]="show.email" name="email" />
+                  <span class="in">Password</span>
+                  <input class="example-form-field" matInput [(ngModel)]="show.password" name="password" />
+              </div>
+              <button mat-raised-button color="primary" style="margin-top: 5%" (click)="updateProfile(id, show)"  *ngIf="show">
+                <span>Save</span>
+              </button>
+          </div>
+      </ng-container>
+
+    <!-- </div> -->
     <div class="card">
       <div class="Upload">
         <!-- ใช้ ng-container เพื่อรองรับการใช้งาน *ngFor และ *ngIf พร้อมกัน -->

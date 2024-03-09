@@ -4,7 +4,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule, Location } from '@angular/common';
 import { Disney } from '../../model/disney_get_res';
-
 import { Constants } from '../../config/constants';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {
@@ -13,8 +12,10 @@ import {
   RouterModule,
   RouterOutlet,
 } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { lmage } from '../../model/Image_get_res';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-profile',
@@ -27,6 +28,7 @@ import { lmage } from '../../model/Image_get_res';
     RouterOutlet,
     RouterModule,
     HttpClientModule,
+    FormsModule
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -41,12 +43,14 @@ export class ProfileComponent {
   login: boolean = false;
   response: any;
 
+  update: any;
+
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private http: HttpClient,
     private constants: Constants,
-    private router: Router
+    private router: Router,
   ) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -143,4 +147,14 @@ export class ProfileComponent {
       console.log(this.urlShow);
     });
   }
-}
+
+
+  updateProfile(id: number, show: any) {
+    const url = this.constants.API_ENDPOINT + `/profile/${id}`;
+    this.http.put(url, show).subscribe((data: any) => {
+      this.update = data;
+      console.log(this.update);
+    });
+  }
+    
+  }

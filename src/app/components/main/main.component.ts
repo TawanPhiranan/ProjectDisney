@@ -194,6 +194,11 @@ export class MainComponent implements OnInit {
     const queryParams = this.user ? { id: this.user.userID } : null;
     this.router.navigate([route], { queryParams });
   }
+  Choose_route1() {
+    const route1 = this.user ? '/ranking' : '/login';
+    const queryParams = this.user ? { id: this.user.userID } : null;
+    this.router.navigate([route1], { queryParams });
+  }
   // Choose_route(userNumber: number) {
   //   const userID = userNumber === 1 ? this.user1.userID : this.user2.userID;
   //   const route = userID ? '/profile' : '/login';

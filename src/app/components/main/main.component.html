@@ -12,14 +12,17 @@
                 <span>Vote</span>
             </button>
             <button mat-button class="btn">
-                <span>Rank</span>
+                <div *ngIf="user" (click)="Choose_route1()">
+                    <span>Rank</span>
+                </div>
             </button>
             <button mat-button class="btn">
                 <div *ngIf="user" (click)="Choose_route()">
                     <span>{{ user.username }}</span>
                 </div>
             </button>
-            <button mat-icon-button (click)="logout()" class="example-icon" aria-label="Example icon-button with share icon">
+            <button mat-icon-button (click)="logout()" class="example-icon"
+                aria-label="Example icon-button with share icon">
                 <mat-icon>logout</mat-icon>
             </button>
         </ng-container>
@@ -27,7 +30,7 @@
     <div style="padding: 10%;">
         <div class="allcard">
             <div class="on_card">
-                <div style="color: aliceblue;" >
+                <div style="color: aliceblue;">
                     <span style="font-size: xx-large;">Choose your favorite character image.</span><br>
                     <span style="font-size: medium;">เลือกภาพตัวละครที่คุณชื่นชอบ</span>
                 </div>
@@ -36,10 +39,9 @@
                     <!-- card 1 -->
                     <mat-card class="example-card">
                         <div *ngIf="img1">
-                            <mat-card-header  *ngIf="user1">
+                            <mat-card-header *ngIf="user1">
                                 <div mat-card-avatar class="header-image" (click)="Choose_route()">
-                                    <img src="{{user1.imgUser}}"
-                                        width="60px">
+                                    <img src="{{user1.imgUser}}" width="60px">
                                 </div>
                                 <div style="font-size: xx-large; margin-left: 20px;">
                                     <span>{{user1.username}}</span>
@@ -72,7 +74,7 @@
                                 </div>
                             </mat-card-header>
                             <div style="display: flex; margin-left: 20px;">
-                                <img mat-card-image src="{{img2.url}}" class="imgPro"  (click)="vote(imgid2, imgid1, 1)"> 
+                                <img mat-card-image src="{{img2.url}}" class="imgPro" (click)="vote(imgid2, imgid1, 1)">
                             </div>
                             <mat-card-actions>
                                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorite"
