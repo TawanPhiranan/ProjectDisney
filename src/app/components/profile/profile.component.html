@@ -51,10 +51,11 @@
       <div class="Upload">
         <!-- ใช้ ng-container เพื่อรองรับการใช้งาน *ngFor และ *ngIf พร้อมกัน -->
         <ng-container *ngIf="urlShow">
-          <!-- วนลูปแสดงรูปภาพทั้งหมดใน urlShows -->
-          <img *ngFor="let url of urlShow" [src]="url.url" alt="User Image">
+          <a *ngFor="let url of urlShow" [routerLink]="['/edit']" [queryParams]="{ id: this.user.userID, imgID: url.imgID }">
+            <img [src]="url.url" alt="User Image">
+          </a>
         </ng-container>
-
+        
         <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()" >
           <span>+</span>
           <input type="file" (change)="onFileSelected($event)" #fileUpload style="display: none;">

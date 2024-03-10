@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     RouterOutlet,
     RouterModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -144,7 +144,7 @@ export class ProfileComponent {
     const urll = this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
     this.http.get(urll).subscribe((data: any) => {
       this.urlShow = data;
-      console.log(this.urlShow);
+      // console.log(this.urlShow);
     });
   }
 
@@ -154,15 +154,16 @@ export class ProfileComponent {
     this.http.put(url, show).subscribe((data: any) => {
       this.update = data;
       console.log(this.update);
-    });
+    }); 
+    window.location.reload();
   }
+  
   confirmUpdateProfile(id: any, show: boolean) {
-    if (confirm("คุณต้องการที่จะบันทึกข้อมูลหรือไม่?")) {
+    if (confirm("Are you sure you want to update this information?")) {
       this.updateProfile(id, show);
-      window.location.reload();
     } else {
-      window.location.reload();
+      // window.location.reload();
     }
   }
-
+  
   }
