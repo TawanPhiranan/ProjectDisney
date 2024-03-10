@@ -39,9 +39,10 @@
                   <span class="in">Password</span>
                   <input class="example-form-field" matInput [(ngModel)]="show.password" name="password" />
               </div>
-              <button mat-raised-button color="primary" style="margin-top: 5%" (click)="updateProfile(id, show)"  *ngIf="show">
+              <button mat-raised-button color="primary" style="margin-top: 5%" (click)="confirmUpdateProfile(id, show)" *ngIf="show">
                 <span>Save</span>
               </button>
+              
           </div>
       </ng-container>
 
