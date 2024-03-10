@@ -5,6 +5,7 @@
   background-color: #ebe6e0;
   position: fixed;
   top: 0;
+  z-index: 1000;
 }
 
 .btn {
@@ -100,4 +101,15 @@
 
 h3{
   margin: 0;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }

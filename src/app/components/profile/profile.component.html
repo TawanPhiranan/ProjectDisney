@@ -42,7 +42,6 @@
               <button mat-raised-button color="primary" style="margin-top: 5%" (click)="confirmUpdateProfile(id, show)" *ngIf="show">
                 <span>Save</span>
               </button>
-              
           </div>
       </ng-container>
 
@@ -52,7 +51,12 @@
         <!-- ใช้ ng-container เพื่อรองรับการใช้งาน *ngFor และ *ngIf พร้อมกัน -->
         <ng-container *ngIf="urlShow">
           <!-- วนลูปแสดงรูปภาพทั้งหมดใน urlShows -->
-          <img *ngFor="let url of urlShow" [src]="url.url" alt="User Image">
+          <div class="image-container" *ngFor="let url of urlShow">
+            <img [src]="url.url" alt="User Image">
+            <button mat-icon-button class="delete-icon" (click)="removeImage(url)">
+              <mat-icon style="color: red; font-weight: bold;">close</mat-icon>
+            </button>
+          </div>
         </ng-container>
 
         <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()" >

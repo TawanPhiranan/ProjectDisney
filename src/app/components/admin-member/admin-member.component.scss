@@ -22,30 +22,33 @@ h3 {
 }
 
 .member {
-  padding-left: 8%;
-  padding-right: 8%;
-  padding-bottom: 8%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap; /* เพิ่มคำสั่งนี้ */
-  justify-content: center; /* จัดให้การ์ดอยู่ตรงกลาง */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ให้แสดงคอลัมน์สองในแต่ละแถว */
+  padding-left: 15%;
+  padding-right: 15%;
+  gap: 4%;
 }
 
 .card {
   background-color: rgba(255, 255, 255, 0.36);
   border-radius: 20px;
   display: flex;
-  justify-content: center;
-  width: 100%; /* ปรับขนาดของการ์ดให้เหมาะสม */
-  margin: 4%; /* ให้การ์ดมีระยะห่าง */
-  padding: 5%;
   align-items: center;
+  width: 100%;
 }
 
+h2{
+  margin: 0;
+}
 
-.member1 {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+.imgPro {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  width: 150px;
+  height: 150px;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }

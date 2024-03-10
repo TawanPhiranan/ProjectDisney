@@ -6,6 +6,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Disney } from '../../model/disney_get_res';
 import { Constants } from '../../config/constants';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 import {
   ActivatedRoute,
   Router,
@@ -77,7 +78,6 @@ export class ProfileComponent {
     if (eventData?.target?.files && eventData.target.files.length > 0) {
       const selectedFile = eventData.target.files[0];
       console.log('Selected file:', selectedFile);
-
       this.handleFileUpload(selectedFile);
     }
   }
@@ -156,14 +156,19 @@ export class ProfileComponent {
       this.update = data;
       console.log(this.update);
     });
+    window.location.reload();
   }
   confirmUpdateProfile(id: any, show: boolean) {
     if (confirm("คุณต้องการที่จะบันทึกข้อมูลหรือไม่?")) {
       this.updateProfile(id, show);
-      window.location.reload();
+      // window.location.reload();
     } else {
-      window.location.reload();
     }
   }
 
+  removeImage(url: any) {
+    // เพิ่มโค้ดที่นี่เพื่อลบรูปภาพที่ถูกคลิกออกจาก urlShow
+  }
+  
 }
+
