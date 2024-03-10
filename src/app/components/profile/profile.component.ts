@@ -156,15 +156,23 @@ export class ProfileComponent {
       this.update = data;
       console.log(this.update);
     });
+<<<<<<< HEAD
     // window.location.reload();
+=======
+>>>>>>> edba5f4836d920f1b9d75b13e594105d5090d52c
   }
   confirmUpdateProfile(id: any, show: boolean) {
     if (confirm("Are you sure you want to update this information?")) {
       this.updateProfile(id, show);
       window.location.reload();
+<<<<<<< HEAD
 
     } else {
+=======
+    } else {
+      // window.location.reload();
+>>>>>>> edba5f4836d920f1b9d75b13e594105d5090d52c
     }
   }
-  
+
 }
