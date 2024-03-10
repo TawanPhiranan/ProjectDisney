@@ -1,32 +1,33 @@
-<body>  
+<body>
   <!-- toolbar -->
   <mat-toolbar>
     <img src="https://www.pngall.com/wp-content/uploads/5/Walt-Disney-Logo-Background-PNG.png" width="100px" />
     <span class="example-spacer"></span>
     <button mat-button class="btn">
-        <span>Vote</span>
+      <span>Vote</span>
     </button>
     <button mat-button class="btn">
-        <span>Rank</span>
+      <span>Rank</span>
     </button>
     <button mat-button class="btn">
-        <span>Username</span>
+      <span>Username</span>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>logout</mat-icon>
+      <mat-icon>logout</mat-icon>
     </button>
-</mat-toolbar>
+  </mat-toolbar>
 
   <!-- back -->
   <div style="padding-top: 100px; padding-left: 3%; color: #ffffff">
     <!-- <a (click)="goBack()" style="cursor: pointer"> -->
     <a>
-      <h3>< Back</h3>
+      <h3>
+        < Back</h3>
     </a>
   </div>
   <!-- back -->
-<!-- 
-  <div class="member">
+
+  <!-- <div class="member">
     <div class="card">
         <img src="https://i.pinimg.com/736x/4e/f6/97/4ef697f5fd60d042448563fe8f443de6.jpg" width="80px">
     </div>
@@ -34,4 +35,17 @@
         <img src="https://i.pinimg.com/736x/4e/f6/97/4ef697f5fd60d042448563fe8f443de6.jpg" width="80px">
     </div>
   </div>  -->
+  <div style="font-size: xx-large; color: #fff; padding-left: 10%; font-weight: bold;">
+    <span>Admin</span>
+  </div>
+  <table *ngIf="profile" class="member">
+    <tbody>
+      <tr *ngFor="let user of profile;" class="card">
+        <td><img src="{{ user.imgUser }}" width="110px" height="140px" /></td>
+        <td>{{ user.username }}</td>
+        <br>
+        <td>{{ user.email }}</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
