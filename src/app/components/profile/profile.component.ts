@@ -156,14 +156,14 @@ export class ProfileComponent {
       this.update = data;
       console.log(this.update);
     });
-    window.location.reload();
   }
   confirmUpdateProfile(id: any, show: boolean) {
     if (confirm("คุณต้องการที่จะบันทึกข้อมูลหรือไม่?")) {
       this.updateProfile(id, show);
-    } else {
       window.location.reload();
+    } else {
+      // window.location.reload();
     }
   }
-  
+
 }
