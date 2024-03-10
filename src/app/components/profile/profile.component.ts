@@ -16,6 +16,7 @@ import { Observable, lastValueFrom } from 'rxjs';
 import { lmage } from '../../model/Image_get_res';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -27,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     RouterOutlet,
     RouterModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -49,7 +50,7 @@ export class ProfileComponent {
     private location: Location,
     private http: HttpClient,
     private constants: Constants,
-    private router: Router
+    private router: Router,
   ) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -92,7 +93,7 @@ export class ProfileComponent {
 
       const firebaseURL = this.response.url;
       console.log(firebaseURL);
-
+      
       this.addDB(firebaseURL);
       this.resetInput();
     }
@@ -106,49 +107,47 @@ export class ProfileComponent {
       .post(dbUrl, {
         userID: this.id, // ใช้ค่า id ที่ได้จาก queryParams
         url: url,
-        uploadDay: uploadDay,
+        uploadDay: uploadDay
       })
       .subscribe((data: any) => {
         console.log(data);
         console.log(data.last_idx);
         const dbUrl2 = this.constants.API_ENDPOINT + '/vote/newimg';
-        this.http
-          .post(dbUrl2, {
-            imgID: data.last_idx,
-          })
-          .subscribe((data: any) => {
-            console.log(data);
-          });
-      });
+        this.http.post(dbUrl2, {
+          imgID: data.last_idx
+        })
+        .subscribe((data: any) => {
+          console.log(data);
+        }); 
+      }); 
 
-    setTimeout(() => {
-      this.showImg();
-    }, 3000);
+
+      setTimeout(() => {
+        this.showImg();
+      }, 3000);      
   }
 
   //ล้างค่า
   resetInput() {
-    const inputElement = document.getElementById(
-      'fileInput'
-    ) as HTMLInputElement;
-    inputElement.value = '';
+    const inputElement = document.getElementById('fileInput') as HTMLInputElement;
+    inputElement.value = "";
   }
 
   goBack(): void {
     this.location.back();
   }
 
-  urlShow: any[] = [];
+  urlShow : any[] = [];
 
   //show url
   showImg() {
-    const urll =
-      this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
+    const urll = this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
     this.http.get(urll).subscribe((data: any) => {
       this.urlShow = data;
       console.log(this.urlShow);
     });
   }
+
 
   updateProfile(id: number, show: any) {
     const url = this.constants.API_ENDPOINT + `/profile/${id}`;
@@ -156,23 +155,6 @@ export class ProfileComponent {
       this.update = data;
       console.log(this.update);
     });
-<<<<<<< HEAD
-    // window.location.reload();
-=======
->>>>>>> edba5f4836d920f1b9d75b13e594105d5090d52c
-  }
-  confirmUpdateProfile(id: any, show: boolean) {
-    if (confirm("Are you sure you want to update this information?")) {
-      this.updateProfile(id, show);
-      window.location.reload();
-<<<<<<< HEAD
-
-    } else {
-=======
-    } else {
-      // window.location.reload();
->>>>>>> edba5f4836d920f1b9d75b13e594105d5090d52c
-    }
   }
 
-}
+  }
