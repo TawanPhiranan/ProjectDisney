@@ -9,18 +9,17 @@
       <span>Rank</span>
     </button>
     <button mat-button class="btn">
-      <!-- <div *ngIf="user">
-            <span>{{ user.username }}</span>
-          </div> -->
-      <span>Username</span>
+      <div *ngIf="user">
+        <span>{{ user.username }}</span>
+      </div>
     </button>
     <button mat-icon-button (click)="logout()" class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>logout</mat-icon>
-  </button>
+    </button>
   </mat-toolbar>
   <!-- Back -->
   <div style="padding-top: 100px; padding-left: 3%; color: #ffffff; width: 60px">
-    <a (click)="goBack()" style="cursor: pointer">
+    <a (click)="goBack()" style="cursor: pointer; text-decoration: none;">
       <h3>
         < Back</h3>
     </a>
@@ -28,15 +27,17 @@
 
   <!-- card -->
   <div class="edit">
-    <div class="card">
+    <div class="card" *ngFor="let edit of editShow">
       <div class="imgDetails">
-        <input class="example-form-field" matInput #search />
-        <img src="https://i.pinimg.com/736x/1f/60/a9/1f60a98395a95b4a2b49600f954fc127.jpg" width="300px" alt="" />
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <input class="example-form-field" matInput [(ngModel)]="edit.imgName" name="imgName" style="text-align: center;" />
+        </div>        
+        <img [src]="edit.url" width="300px" alt="" class="img" />
         <div style="display: flex; flex-direction: row; align-items: center;">
           <button mat-icon-button style="color: red;" aria-label="Example icon-button with share icon">
             <mat-icon>favorite</mat-icon>
           </button>
-          <span style="color: #ffffff;">88</span>&nbsp;&nbsp;&nbsp;
+          <span style="color: #ffffff;">{{edit.total_score}}</span>&nbsp;&nbsp;&nbsp;
           <span style="color: #ffffff;">(คลิกที่รูปเพื่อแก้ไข)</span>
         </div>
       </div>
@@ -45,7 +46,8 @@
           <button mat-raised-button color="primary">
             <span>Delete</span>
           </button>
-          <button mat-raised-button color="primary">
+          <button mat-raised-button color="primary" style="margin-top: 5%" (click)="confirmUpdateProfile(imgID, edit)"
+            *ngIf="edit">
             <span>Save</span>
           </button>
         </div>

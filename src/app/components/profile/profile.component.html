@@ -52,13 +52,15 @@
         <ng-container *ngIf="urlShow">
           <!-- วนลูปแสดงรูปภาพทั้งหมดใน urlShows -->
           <div class="image-container" *ngFor="let url of urlShow">
-            <img [src]="url.url" alt="User Image">
-            <button mat-icon-button class="delete-icon" (click)="removeImage(url)">
+            <a [routerLink]="['/edit']" [queryParams]="{ id: this.user.userID, imgID: url.imgID }">
+              <img [src]="url.url" alt="User Image">
+            </a>
+              <button mat-icon-button class="delete-icon" (click)="removeImage(url)">
               <mat-icon style="color: red; font-weight: bold;">close</mat-icon>
             </button>
           </div>
         </ng-container>
-
+        
         <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()" >
           <span>+</span>
           <input type="file" (change)="onFileSelected($event)" #fileUpload style="display: none;">

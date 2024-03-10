@@ -50,7 +50,7 @@ export class ProfileComponent {
     private location: Location,
     private http: HttpClient,
     private constants: Constants,
-    private router: Router
+    private router: Router,
   ) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -100,13 +100,12 @@ export class ProfileComponent {
 
   addDB(url: any): void {
     const uploadDay = new Date().toISOString();
-
     const dbUrl = this.constants.API_ENDPOINT + '/upload/img/';
     this.http
       .post(dbUrl, {
         userID: this.id, // ใช้ค่า id ที่ได้จาก queryParams
         url: url,
-        uploadDay: uploadDay,
+        uploadDay: uploadDay
       })
       .subscribe((data: any) => {
         console.log(data);
@@ -121,9 +120,9 @@ export class ProfileComponent {
           });
       });
 
-    setTimeout(() => {
-      this.showImg();
-    }, 3000);
+      setTimeout(() => {
+        this.showImg();
+      }, 3000);      
   }
 
   //ล้างค่า
@@ -138,7 +137,7 @@ export class ProfileComponent {
     this.location.back();
   }
 
-  urlShow: any[] = [];
+  urlShow : any[] = [];
 
   //show url
   showImg() {
@@ -146,7 +145,7 @@ export class ProfileComponent {
       this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
     this.http.get(urll).subscribe((data: any) => {
       this.urlShow = data;
-      console.log(this.urlShow);
+      // console.log(this.urlShow);
     });
   }
 
@@ -158,8 +157,9 @@ export class ProfileComponent {
     });
     window.location.reload();
   }
+
   confirmUpdateProfile(id: any, show: boolean) {
-    if (confirm("คุณต้องการที่จะบันทึกข้อมูลหรือไม่?")) {
+    if (confirm('Are you sure you want to update this information?')) {
       this.updateProfile(id, show);
       // window.location.reload();
     } else {
@@ -169,6 +169,4 @@ export class ProfileComponent {
   removeImage(url: any) {
     // เพิ่มโค้ดที่นี่เพื่อลบรูปภาพที่ถูกคลิกออกจาก urlShow
   }
-  
 }
-
