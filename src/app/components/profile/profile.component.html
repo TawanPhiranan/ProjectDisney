@@ -55,11 +55,14 @@
           <img *ngFor="let url of urlShow" [src]="url.url" alt="User Image">
         </ng-container>
 
-        <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()">
+        <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()" >
           <span>+</span>
           <input type="file" (change)="onFileSelected($event)" #fileUpload style="display: none;">
         </button>
-
+        <button *ngIf="urlShow.length >= 5" class="circle-button" disabled>
+          <span>+</span>
+          <input type="file" style="display: none;">
+        </button>
       </div>
     </div>
   </div>

@@ -156,5 +156,13 @@ export class ProfileComponent {
       console.log(this.update);
     });
   }
+  confirmUpdateProfile(id: any, show: boolean) {
+    if (confirm("คุณต้องการที่จะบันทึกข้อมูลหรือไม่?")) {
+      this.updateProfile(id, show);
+      window.location.reload();
+    } else {
+      window.location.reload();
+    }
+  }
 
   }
