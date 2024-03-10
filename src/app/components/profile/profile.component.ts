@@ -162,7 +162,7 @@ export class ProfileComponent {
       this.updateProfile(id, show);
       window.location.reload();
     } else {
-      // window.location.reload();
+      window.location.reload();
     }
   }
 
