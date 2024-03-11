@@ -53,7 +53,7 @@ export class RankingComponent {
     const Url = this.constants.API_ENDPOINT + '/vote/rank/score';
     this.http.get(Url).subscribe((data: any) => {
       this.rank = data;
-      console.log(this.rank);
+      // console.log(this.rank);
     });
   }
 

@@ -113,4 +113,19 @@ h3{
   top: 0px;
   right: 0px;
 }
+.bordered-span {
+  display: flex;
+  padding: 5px;
+  background-color: #ebe6e0;
+  // border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 300px;
+  height: 40px;
+  font-size: x-large;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
 

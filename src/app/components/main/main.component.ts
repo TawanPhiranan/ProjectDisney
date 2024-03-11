@@ -48,6 +48,7 @@ export class MainComponent implements OnInit {
   scord1: any = 0;
   scord2: any = 0;
   canVote: boolean = true;
+  userID : any;
 
 
   constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants,
@@ -56,6 +57,7 @@ export class MainComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
       // console.log(this.id);
+      // this.userID = params['userID'];
       this.callApi();
     });
     this.UrlAll();
@@ -189,23 +191,18 @@ export class MainComponent implements OnInit {
 
 
   // กำหนดเส้นทาง
-  Choose_route() {
-    const route = this.user ? '/profile' : '/login';
-    const queryParams = this.user ? { id: this.user.userID } : null;
+  Choose_route1() {
+    const route = this.user ? '/profiles' : '/login';
+    const queryParams = this.user ? { id: this.user.userID, userID : this.user1.userID} : null;
     this.router.navigate([route], { queryParams });
   }
-  
-  Choose_route1() {
-    const route1 = this.user ? '/ranking' : '/login';
-    const queryParams = this.user ? { id: this.user.userID } : null;
-    this.router.navigate([route1], { queryParams });
+
+  Choose_route2() {
+    const route = this.user ? '/profiles' : '/login';
+    const queryParams = this.user ? { id: this.user.userID, userID : this.user2.userID} : null;
+    this.router.navigate([route], { queryParams });
   }
-  // Choose_route(userNumber: number) {
-  //   const userID = userNumber === 1 ? this.user1.userID : this.user2.userID;
-  //   const route = userID ? '/profile' : '/login';
-  //   const queryParams = userID ? { id: userID } : null;
-  //   this.router.navigate([route], { queryParams });
-  // }
+
 
   logout() {
     this.login = false;
