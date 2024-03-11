@@ -100,6 +100,7 @@ export class ProfileComponent {
 
   addDB(url: any): void {
     const uploadDay = new Date().toISOString();
+
     const dbUrl = this.constants.API_ENDPOINT + '/upload/img/';
     this.http
       .post(dbUrl, {
@@ -119,6 +120,7 @@ export class ProfileComponent {
             console.log(data);
           });
       });
+
 
       setTimeout(() => {
         this.showImg();
@@ -154,8 +156,8 @@ export class ProfileComponent {
     this.http.put(url, show).subscribe((data: any) => {
       this.update = data;
       console.log(this.update);
+      this.user.username = show.username;
     });
-    window.location.reload();
   }
 
   confirmUpdateProfile(id: any, show: boolean) {

@@ -55,7 +55,7 @@
             <a [routerLink]="['/edit']" [queryParams]="{ id: this.user.userID, imgID: url.imgID }">
               <img [src]="url.url" alt="User Image">
             </a>
-              <button mat-icon-button class="delete-icon" (click)="removeImage(url)">
+              <button mat-icon-button class="delete-icon" (click)="removeImage(url.imgID)">
               <mat-icon style="color: red; font-weight: bold;">close</mat-icon>
             </button>
           </div>

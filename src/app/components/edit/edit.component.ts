@@ -74,14 +74,13 @@ export class EditComponent {
       this.updateName = data;
       console.log(this.updateName);
     }); 
-    window.location.reload();
   }
   
   confirmUpdateProfile(imgID: number, edit: boolean) {
     if (confirm("Are you sure you want to update this information?")) {
       this.updateProfile(imgID, edit);
     } else {
-      // window.location.reload();
+      
     }
   }
 
