@@ -26,7 +26,7 @@ export class HeaderComponent {
     private location: Location, 
     private http: HttpClient, 
     private constants: Constants, 
-    private router: Router) {
+    private router: Router,) {
   }
 
   ngOnInit(): void {
@@ -44,6 +44,12 @@ export class HeaderComponent {
       // console.log(this.user);
     });
   }
+  shouldShowHeader(): boolean {
+    const hideHeaderUrls = ['/login', '/signup']; // ระบุ URL ที่ไม่ต้องการให้แสดง header
+    const currentUrl = this.router.url;
+    return !hideHeaderUrls.includes(currentUrl);
+}
+
 
   goBack(): void {
     this.location.back();

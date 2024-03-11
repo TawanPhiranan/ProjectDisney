@@ -16,6 +16,7 @@ import {
 import { Observable, lastValueFrom } from 'rxjs';
 import { lmage } from '../../model/Image_get_res';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-profile',
@@ -45,6 +46,7 @@ export class ProfileComponent {
 
   update: any;
   urlShowAll: any;
+  userID: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,11 +54,13 @@ export class ProfileComponent {
     private http: HttpClient,
     private constants: Constants,
     private router: Router,
+    private header : HeaderComponent
   ) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
       // console.log(this.id);
+      this.userID = params['userID'];
       this.callApi();
     });
     this.showImg();
@@ -145,20 +149,39 @@ export class ProfileComponent {
 
   //show url
   showImg() {
-    const urll = this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
-    this.http.get(urll).subscribe((data: any) => {
-      this.urlShow = data;
-      console.log(this.urlShow);      
-    });
+    let url;
+    if (this.userID) {
+      url = this.constants.API_ENDPOINT + `/profile/show?userID=${this.userID}`;
+      this.http.get(url).subscribe((data: any) => {
+        this.urlShow = data;
+        console.log(this.urlShow);
+      });
+    } else {
+      url = this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
+      this.http.get(url).subscribe((data: any) => {
+        this.urlShow = data;
+        console.log(this.urlShow);
+      });
+    }
   }
- 
-  //show user
-  showAll(){
-    const url = this.constants.API_ENDPOINT+ `/profile/showall?userID=${this.id}`;
-    this.http.get(url).subscribe((data: any) => {
-      this.urlShowAll = data;
-      // console.log(this.urlShowAll);      
-    });
+
+  showAll() {
+    let userId;
+    if (this.userID) {
+      userId = this.userID;
+      const url = this.constants.API_ENDPOINT + `/profile/showall?userID=${userId}`;
+      this.http.get(url).subscribe((data: any) => {
+        this.urlShowAll = data;
+        console.log(this.urlShowAll);
+      });
+    } else {
+      userId = this.id;
+      const url = this.constants.API_ENDPOINT + `/profile/showall?userID=${userId}`;
+      this.http.get(url).subscribe((data: any) => {
+        this.urlShowAll = data;
+        console.log(this.urlShowAll);
+      });
+    }
   }
 
   updateProfile(id: number, show: any) {
@@ -168,18 +191,22 @@ export class ProfileComponent {
       console.log(this.update);
       this.urlShowAll.username = show.username;
     });
-    // window.location.reload();
   }
 
   confirmUpdateProfile(id: any, show: boolean) {
     if (confirm('Are you sure you want to update this information?')) {
       this.updateProfile(id, show);
-      // window.location.reload();
-    } else {
+    } else{
+      
     }
   }
 
   removeImage(url: any) {
     // เพิ่มโค้ดที่นี่เพื่อลบรูปภาพที่ถูกคลิกออกจาก urlShow
   }
+
+  isValidUser(show: any): boolean {
+    return show && this.userID === this.id;
+  }
+  
 }

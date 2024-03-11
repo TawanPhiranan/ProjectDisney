@@ -1,29 +1,29 @@
-    <mat-toolbar>
-        <img src="https://www.pngall.com/wp-content/uploads/5/Walt-Disney-Logo-Background-PNG.png" width="100px" />
-        <span class="example-spacer"></span>
-        <ng-container *ngIf="!user">
-            <button mat-button class="btn" routerLink="/login">
-                <span>Login</span>
-            </button>
-        </ng-container>
-        <ng-container *ngIf="user">
-            <button mat-button class="btn">
-                <span>Vote</span>
-            </button>
-            <button mat-button class="btn">
-                <div *ngIf="user" (click)="Choose_route1()">
-                    <span>Rank</span>
-                </div>
-            </button>
-            <button mat-button class="btn">
-                <div *ngIf="user" (click)="Choose_route()">
-                    <span>{{ user.username }}</span>
-                </div>
-            </button>
-            <button mat-icon-button (click)="logout()" class="example-icon"
-                aria-label="Example icon-button with share icon">
-                <mat-icon>logout</mat-icon>
-            </button>
-        </ng-container>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
+<mat-toolbar *ngIf="shouldShowHeader()">
+    <img src="https://www.pngall.com/wp-content/uploads/5/Walt-Disney-Logo-Background-PNG.png" width="100px" />
+    <span class="example-spacer"></span>
+    <ng-container *ngIf="!user">
+        <button mat-button class="btn" routerLink="/login">
+            <span>Login</span>
+        </button>
+    </ng-container>
+    <ng-container *ngIf="user">
+        <button mat-button class="btn">
+            <span>Vote</span>
+        </button>
+        <button mat-button class="btn">
+            <div *ngIf="user" (click)="Choose_route1()">
+                <span>Rank</span>
+            </div>
+        </button>
+        <button mat-button class="btn">
+            <div *ngIf="user" (click)="Choose_route()">
+                <span>{{ user.username }}</span>
+            </div>
+        </button>
+        <button mat-icon-button (click)="logout()" class="example-icon"
+            aria-label="Example icon-button with share icon">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </ng-container>
+</mat-toolbar>
+<router-outlet></router-outlet>
