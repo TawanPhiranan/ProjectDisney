@@ -7,37 +7,46 @@ import { Disney } from '../../model/disney_get_res';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { StatsService } from '../../services/api/stats.service';
 
 @Component({
   selector: 'app-ranking',
   standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule, CommonModule, MatTableModule],
+  imports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    CommonModule,
+    MatTableModule,
+  ],
   templateUrl: './ranking.component.html',
-  styleUrl: './ranking.component.scss'
+  styleUrl: './ranking.component.scss',
 })
 export class RankingComponent {
   id: any;
   disneys: Disney[] = [];
   user: any;
   login: boolean = false;
-  rank : any;
-
+  rank: any;
+  imgID: any;
+  yesterday: any[] = [];
 
   constructor(
-    private route: ActivatedRoute, 
-    private location: Location, 
-    private http: HttpClient, 
-    private constants: Constants, 
-    private router: Router) {
-  }
+    private route: ActivatedRoute,
+    private location: Location,
+    private http: HttpClient,
+    private constants: Constants,
+    private router: Router,
+    private stats:StatsService
+  ) {}
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
       // console.log(this.id);
       this.callApi();
     });
-    this. rankScore();
+    this.loadDataAsync();
   }
 
   callApi(): void {
@@ -48,27 +57,33 @@ export class RankingComponent {
     });
   }
 
-
-  rankScore(){
-    const Url = this.constants.API_ENDPOINT + '/vote/rank/score';
-    this.http.get(Url).subscribe((data: any) => {
-      this.rank = data;
-      console.log(this.rank);
-    });
-  }
-
+  imgIDurl : any[] =[];
+  
 
   goBack(): void {
     this.location.back();
   }
-
 
   logout() {
     this.login = false;
     this.router.navigate(['/'], { replaceUrl: true });
   }
 
-
-
+  image : any[] = [];
+  BeforeRank : any[] = [];
+  NowRank : any[] = [];
+  async loadDataAsync (){
+    const Url = this.constants.API_ENDPOINT + '/rank/score';
+    this.http.get(Url).subscribe(async (data: any) => {
+      this.image = data;
+      for(let i = 0;i<this.image.length;i++){
+        this.BeforeRank.push(await this.stats.getAllDailystats(this.image[i].imgID));
+      }
+      for(let i = 0;i<this.image.length;i++){
+        this.NowRank.push(this.BeforeRank[i][0].rank);
+      }
+      console.log(this.NowRank);
+    });
+    
+  }
 }
-  
