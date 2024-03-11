@@ -1,24 +1,4 @@
 <body>
-  <mat-toolbar>
-    <img src="https://www.pngall.com/wp-content/uploads/5/Walt-Disney-Logo-Background-PNG.png" width="100px" />
-    <span class="example-spacer"></span>
-    <button mat-button class="btn">
-      <span>Vote</span>
-    </button>
-    <button mat-button class="btn">
-      <span>Rank</span>
-    </button>
-    <button mat-button class="btn">
-      <div *ngIf="user">
-        <span>{{ user.username }}</span>
-      </div>
-    </button>
-    <button mat-icon-button (click)="logout()" class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </mat-toolbar>
-  <!-- toolbar -->
-
   <div style="padding-top: 100px; padding-left: 3%; color: #ffffff; width: 60px">
     <a (click)="goBack()" style="cursor: pointer; text-decoration: none;">
       <h3>
@@ -26,24 +6,25 @@
     </a>
   </div>
   <!-- <div *ngIf="urlShow"> -->
-    <div class="profile">
-      <!-- <div class="profile1"> -->
-        <ng-container *ngFor="let show of urlShow; let i = index">
-          <div *ngIf="i === 0" class="details">
-              <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" />
-              <div>
-                  <span class="in">Username</span>
-                  <input class="example-form-field" matInput [(ngModel)]="show.username" name="username" />
-                  <span class="in">Email</span>
-                  <input class="example-form-field" matInput [(ngModel)]="show.email" name="email" />
-                  <span class="in">Password</span>
-                  <input class="example-form-field" matInput [(ngModel)]="show.password" name="password" />
-              </div>
-              <button mat-raised-button color="primary" style="margin-top: 5%" (click)="confirmUpdateProfile(id, show)" *ngIf="show">
-                <span>Save</span>
-              </button>
-          </div>
-      </ng-container>
+  <div class="profile">
+    <!-- <div class="profile1"> -->
+    <ng-container *ngFor="let show of urlShowAll">
+      <div class="details">
+        <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" />
+        <div>
+          <span class="in">Username</span>
+          <input class="example-form-field" matInput [(ngModel)]="show.username" name="username" />
+          <span class="in">Email</span>
+          <input class="example-form-field" matInput [(ngModel)]="show.email" name="email" />
+          <span class="in">Password</span>
+          <input class="example-form-field" matInput [(ngModel)]="show.password" name="password" />
+        </div>
+        <button mat-raised-button color="primary" style="margin-top: 5%" (click)="confirmUpdateProfile(id, show)"
+          *ngIf="show">
+          <span>Save</span>
+        </button>
+      </div>
+    </ng-container>
 
     <!-- </div> -->
     <div class="card">
@@ -52,16 +33,16 @@
         <ng-container *ngIf="urlShow">
           <!-- วนลูปแสดงรูปภาพทั้งหมดใน urlShows -->
           <div class="image-container" *ngFor="let url of urlShow">
-            <a [routerLink]="['/edit']" [queryParams]="{ id: this.user.userID, imgID: url.imgID }">
+            <a [routerLink]="['/edit']" [queryParams]="{  id: user?.userID, imgID: url.imgID }">
               <img [src]="url.url" alt="User Image">
             </a>
-              <button mat-icon-button class="delete-icon" (click)="removeImage(url.imgID)">
-              <mat-icon style="color: red; font-weight: bold;">close</mat-icon>
+            <button mat-icon-button class="delete-icon" (click)="removeImage(url)">
+              <mat-icon style="color: rgb(13, 10, 10); font-weight: bold;">bookmark_remove</mat-icon>
             </button>
           </div>
         </ng-container>
-        
-        <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()" >
+
+        <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()">
           <span>+</span>
           <input type="file" (change)="onFileSelected($event)" #fileUpload style="display: none;">
         </button>

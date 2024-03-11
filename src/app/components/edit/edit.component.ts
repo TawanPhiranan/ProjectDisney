@@ -73,6 +73,7 @@ export class EditComponent {
     this.http.put(url, edit).subscribe((data: any) => {
       this.updateName = data;
       console.log(this.updateName);
+      // this.user.username = edit.username;
     }); 
   }
   

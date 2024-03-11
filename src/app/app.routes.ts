@@ -15,4 +15,5 @@ export const routes: Routes = [
     {path: 'adminMember', component: AdminMemberComponent},
     {path: 'edit', component: EditComponent},
     {path: 'ranking', component: RankingComponent},
+    // {path: 'header', component: Headers},
 ];

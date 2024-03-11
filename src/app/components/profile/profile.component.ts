@@ -44,6 +44,7 @@ export class ProfileComponent {
   response: any;
 
   update: any;
+  urlShowAll: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,7 +52,7 @@ export class ProfileComponent {
     private http: HttpClient,
     private constants: Constants,
     private router: Router,
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
@@ -59,6 +60,7 @@ export class ProfileComponent {
       this.callApi();
     });
     this.showImg();
+    this.showAll();
   }
 
   callApi(): void {
@@ -122,9 +124,9 @@ export class ProfileComponent {
       });
 
 
-      setTimeout(() => {
-        this.showImg();
-      }, 3000);      
+    setTimeout(() => {
+      this.showImg();
+    }, 3000);
   }
 
   //ล้างค่า
@@ -139,15 +141,23 @@ export class ProfileComponent {
     this.location.back();
   }
 
-  urlShow : any[] = [];
+  urlShow: any[] = [];
 
   //show url
   showImg() {
-    const urll =
-      this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
+    const urll = this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
     this.http.get(urll).subscribe((data: any) => {
       this.urlShow = data;
-      // console.log(this.urlShow);
+      console.log(this.urlShow);      
+    });
+  }
+ 
+  //show user
+  showAll(){
+    const url = this.constants.API_ENDPOINT+ `/profile/showall?userID=${this.id}`;
+    this.http.get(url).subscribe((data: any) => {
+      this.urlShowAll = data;
+      // console.log(this.urlShowAll);      
     });
   }
 
@@ -156,8 +166,9 @@ export class ProfileComponent {
     this.http.put(url, show).subscribe((data: any) => {
       this.update = data;
       console.log(this.update);
-      this.user.username = show.username;
+      this.urlShowAll.username = show.username;
     });
+    // window.location.reload();
   }
 
   confirmUpdateProfile(id: any, show: boolean) {
