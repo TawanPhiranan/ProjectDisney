@@ -21,4 +21,6 @@ export class StatsService {
     const response = await lastValueFrom(this.http.get(url));
     return response as any[];
   }
+
+  
 }

@@ -59,6 +59,7 @@ export class RankingComponent {
 
   imgIDurl : any[] =[];
   
+  
 
   goBack(): void {
     this.location.back();
@@ -76,11 +77,16 @@ export class RankingComponent {
     const Url = this.constants.API_ENDPOINT + '/rank/score';
     this.http.get(Url).subscribe(async (data: any) => {
       this.image = data;
-      for(let i = 0;i<this.image.length;i++){
-        this.BeforeRank.push(await this.stats.getAllDailystats(this.image[i].imgID));
+      // console.log(this.image);  
+      for(let i = 0;i < this.image.length; i++){
+        this.BeforeRank.push(await this.stats.getAllDailystats(this.image[i].imgID));  
       }
-      for(let i = 0;i<this.image.length;i++){
-        this.NowRank.push(this.BeforeRank[i][0].rank);
+      for(let i = 0;i < this.image.length; i++){
+        if(this.BeforeRank[i].length>0){
+          this.NowRank.push(this.BeforeRank[i][0].rank);
+        } else {
+          this.NowRank.push("new!!");
+        }
       }
       console.log(this.NowRank);
     });
