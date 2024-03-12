@@ -193,13 +193,20 @@ export class ProfileComponent {
     });
   }
 
-  confirmUpdateProfile(id: any, show: boolean) {
-    if (confirm('Are you sure you want to update this information?')) {
-      this.updateProfile(id, show);
-    } else{
-      
+  confirmUpdateProfile(id: any, username: string, email: string, password: string) {
+  if (confirm('Are you sure you want to update this information?')) {
+    let show: any;
+    if (password.trim() === '') {
+      show = { username, email };
+    } else {
+      show = { username, email, password };
     }
+    this.updateProfile(id, show);
+  } else {
+    // ไม่ต้องทำอะไรเมื่อผู้ใช้ยกเลิกการอัปเดต
   }
+}
+
 
   removeImage(url: any) {
     // เพิ่มโค้ดที่นี่เพื่อลบรูปภาพที่ถูกคลิกออกจาก urlShow
