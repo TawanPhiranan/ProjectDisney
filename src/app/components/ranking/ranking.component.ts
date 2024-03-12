@@ -38,8 +38,8 @@ export class RankingComponent {
     private http: HttpClient,
     private constants: Constants,
     private router: Router,
-    private stats:StatsService
-  ) {}
+    private stats: StatsService
+  ) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
@@ -57,9 +57,9 @@ export class RankingComponent {
     });
   }
 
-  imgIDurl : any[] =[];
-  
-  
+  imgIDurl: any[] = [];
+
+
 
   goBack(): void {
     this.location.back();
@@ -70,26 +70,26 @@ export class RankingComponent {
     this.router.navigate(['/'], { replaceUrl: true });
   }
 
-  image : any[] = [];
-  BeforeRank : any[] = [];
-  NowRank : any[] = [];
-  async loadDataAsync (){
+  image: any[] = [];
+  BeforeRank: any[] = [];
+  NowRank: any[] = [];
+  async loadDataAsync() {
     const Url = this.constants.API_ENDPOINT + '/rank/score';
     this.http.get(Url).subscribe(async (data: any) => {
       this.image = data;
       // console.log(this.image);  
-      for(let i = 0;i < this.image.length; i++){
-        this.BeforeRank.push(await this.stats.getAllDailystats(this.image[i].imgID));  
+      for (let i = 0; i < this.image.length; i++) {
+        this.BeforeRank.push(await this.stats.getAllDailystats(this.image[i].imgID));
       }
-      for(let i = 0;i < this.image.length; i++){
-        if(this.BeforeRank[i].length>0){
+      for (let i = 0; i < this.image.length; i++) {
+        if (this.BeforeRank[i].length > 0) {
           this.NowRank.push(this.BeforeRank[i][0].rank);
         } else {
           this.NowRank.push("new!!");
         }
       }
-      console.log(this.NowRank);
+      console.log(this.NowRank);   
+
     });
-    
   }
 }
