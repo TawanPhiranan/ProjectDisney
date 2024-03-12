@@ -35,8 +35,18 @@
         <td>{{ item.imgName }}</td>
         <td>{{ item.total_score }}</td>
         <td>{{ this.NowRank[i] }}</td>
-        <td><mat-icon>arrow_drop_up</mat-icon></td>
-        <!-- arrow_drop_down -->
+        <!-- <td>{{ this.NowRank[i]-(i+1) }}</td> -->
+        <td style="align-items: center;">
+          <ng-container *ngIf="this.NowRank[i] - (i + 1) === 0">
+            -
+          </ng-container>
+          <ng-container *ngIf="this.NowRank[i] - (i + 1) > 0">
+            <mat-icon style="color: green; font-size: 24px;">arrow_drop_up</mat-icon> &nbsp;+{{ this.NowRank[i]-(i+1) }}
+          </ng-container>
+          <ng-container *ngIf="this.NowRank[i] - (i + 1) < 0">
+            <mat-icon style="color: red; font-size: 24px;">arrow_drop_down</mat-icon> &nbsp;{{ this.NowRank[i]-(i+1) }}
+          </ng-container>
+        </td>        
       </tr>
     </tbody>
   </table>
