@@ -88,23 +88,7 @@ export class RankingComponent {
           this.NowRank.push("new!!");
         }
       }
-      console.log(this.NowRank);
-
-
-      // const compareRanks = this.NowRank.map((nowRank, index) => {
-      //   if (nowRank === "new!!") {
-      //     return "No previous rank";
-      //   } else {
-      //     const beforeRank = this.BeforeRank[index][0].rank;
-      //     console.log(beforeRank);
-      //     // console.log(nowRank);
-      
-      //     return nowRank - beforeRank; // คำนวณค่าผลต่างระหว่างลำดับปัจจุบันกับเมื่อวาน
-      //   }
-      // });
-      
-      // console.log(compareRanks);
-      
+      console.log(this.NowRank);   
 
     });
   }
