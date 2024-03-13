@@ -39,9 +39,11 @@
             <span>อันดับปัจจุบัน</span>
             <span> 14 </span>
           </div>
-          <div class="incard2">
+          <div class="incard2" *ngIf="image">
             <span>อันดับก่อนหน้า</span>
-            <span> 14 </span>
+            <div *ngFor="let item of image; let i = index">
+              <span>{{ NowRank[i] }}</span>
+            </div>
           </div>
           <div class="incard2">
             <span>สรุปผล</span>

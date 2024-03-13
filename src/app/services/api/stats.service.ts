@@ -7,10 +7,26 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class StatsService {
+  compareRanks() {
+    throw new Error('Method not implemented.');
+  }
   
   constructor(private constants : Constants,private http:HttpClient) { }
 
   public async getAllDailystats(options?:any){
+    let url = '';
+    if(options){
+      const id = options;
+      url = this.constants.API_ENDPOINT + '/rank/yesterday/' + id;
+    }else{
+      url = this.constants.API_ENDPOINT + '/rank/yesterday';
+    }
+    const response = await lastValueFrom(this.http.get(url));
+    return response as any[];
+  }
+
+
+  public async getrankYesterday(options?:any){
     let url = '';
     if(options){
       const id = options;

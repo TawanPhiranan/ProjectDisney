@@ -6,17 +6,19 @@
             <span>Login</span>
         </button>
     </ng-container>
-    <ng-container *ngIf="user">
+    <ng-container *ngIf="user" >
         <button mat-button class="btn">
-            <span>Vote</span>
+            <div (click)="Choose_route2()">
+                <span>Vote</span>
+            </div>
         </button>
         <button mat-button class="btn">
-            <div *ngIf="user" (click)="Choose_route1()">
+            <div (click)="Choose_route1()">
                 <span>Rank</span>
             </div>
         </button>
         <button mat-button class="btn">
-            <div *ngIf="user" (click)="Choose_route()">
+            <div (click)="Choose_route()">
                 <span>{{ user.username }}</span>
             </div>
         </button>
