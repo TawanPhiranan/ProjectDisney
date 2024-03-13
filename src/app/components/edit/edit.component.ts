@@ -65,13 +65,15 @@ export class EditComponent {
     | undefined;
   graph: any;
   graphday: any;
+  rankAll: any;
+  current: any;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private http: HttpClient,
     private constants: Constants,
-    private router: Router
+    private router: Router,
   ) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -84,6 +86,8 @@ export class EditComponent {
     });
     this.showAll();
     this.chart();
+    this.rankNOW(this.imgID);
+    
   }
 
   callApi(): void {
@@ -129,7 +133,23 @@ export class EditComponent {
     } else {
     }
   }
+  rankNOW(imgID1: string) {
+    const url = this.constants.API_ENDPOINT + `/rank/rankAll`;
+    this.http.get(url).subscribe((data: any) => {
+      this.rankAll = data;
+      const index = this.rankAll.findIndex(
+        (item: any) => item.imgID === parseInt(imgID1)
+      );
+      console.log(index);
 
+      if (index !== -1) {
+        this.current = this.rankAll[index];
+        console.log(this.current);
+      } else {
+        console.log('imgID not found');
+      }
+    });
+  }
   chart() {
     const url = this.constants.API_ENDPOINT + `/rank/graph/` + this.imgID;
     this.http.get(url).subscribe((data: any) => {

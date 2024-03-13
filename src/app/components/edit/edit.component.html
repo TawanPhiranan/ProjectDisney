@@ -37,7 +37,7 @@
         <div class="card2">
           <div class="incard2">
             <span>อันดับปัจจุบัน</span>
-            <span> 14 </span>
+            <span *ngIf="current" >{{current.rank}}</span>
           </div>
           <div class="incard2">
             <span>อันดับก่อนหน้า</span>
