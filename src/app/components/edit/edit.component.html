@@ -1,8 +1,9 @@
 <body>
-  <div style="padding-top: 100px; padding-left: 3%; color: #ffffff; width: 60px">
-    <a (click)="goBack()" style="cursor: pointer; text-decoration: none;">
-      <h3>
-        < Back</h3>
+  <div
+    style="padding-top: 100px; padding-left: 3%; color: #ffffff; width: 60px"
+  >
+    <a (click)="goBack()" style="cursor: pointer; text-decoration: none">
+      <h3>< Back</h3>
     </a>
   </div>
 
@@ -10,48 +11,93 @@
   <div class="edit">
     <div class="card" *ngFor="let edit of editShow">
       <div class="imgDetails">
-        <div style="display: flex; justify-content: center; align-items: center;">
+        <div
+          style="display: flex; justify-content: center; align-items: center"
+        >
           <!-- <input class="example-form-field" matInput value="{{show.username}}" #username name="username" /> -->
 
-          <input class="example-form-field" matInput value="{{edit.imgName}}" #imgName name="imgName" style="text-align: center;" />
-        </div>        
+          <input
+            class="example-form-field"
+            matInput
+            value="{{ edit.imgName }}"
+            #imgName
+            name="imgName"
+            style="text-align: center"
+          />
+        </div>
         <img [src]="edit.url" width="300px" alt="" class="img" />
-        <div style="display: flex; flex-direction: row; align-items: center;">
-          <button mat-icon-button style="color: red;" aria-label="Example icon-button with share icon">
+        <div style="display: flex; flex-direction: row; align-items: center">
+          <button
+            mat-icon-button
+            style="color: red"
+            aria-label="Example icon-button with share icon"
+          >
             <mat-icon>favorite</mat-icon>
           </button>
-          <span style="color: #ffffff;">{{edit.total_score}}</span>&nbsp;&nbsp;&nbsp;
-          <span style="color: #ffffff;">(คลิกที่รูปเพื่อแก้ไข)</span>
+          <span style="color: #ffffff">{{ edit.total_score }}</span
+          >&nbsp;&nbsp;&nbsp;
+          <span style="color: #ffffff">(คลิกที่รูปเพื่อแก้ไข)</span>
         </div>
       </div>
       <div class="rank">
         <div class="btn1">
-          <button mat-raised-button color="primary" style="background-color: rgb(255, 0, 0);">
+          <button
+            mat-raised-button
+            color="primary"
+            style="background-color: rgb(255, 0, 0)"
+          >
             <span>Delete</span>
           </button>
-          <button mat-raised-button color="primary" style="background-color: rgb(12, 134, 12);" (click)="confirmUpdateProfile(imgID, imgName.value)"
-            *ngIf="edit">
+          <button
+            mat-raised-button
+            color="primary"
+            style="background-color: rgb(12, 134, 12)"
+            (click)="confirmUpdateProfile(imgID, imgName.value)"
+            *ngIf="edit"
+          >
             <span>Save</span>
           </button>
         </div>
         <div class="card2">
           <div class="incard2">
-            <span>อันดับปัจจุบัน</span>
-            <span *ngIf="current" >{{current.rank}}</span>
+            <span>Current</span>
+            <span *ngIf="current">{{ current.rank }}</span>
+          </div>
+          <div class="incard2" *ngIf="image">
+            <span>Previous</span>
+            <div *ngFor="let item of image; let i = index">
+              <span>{{ NowRank[i] }}</span>
+            </div>
           </div>
           <div class="incard2">
-            <span>อันดับก่อนหน้า</span>
-            <span> 14 </span>
+            <span>Summary</span>
+            <div style="display: flex; align-items: center; justify-content: center">
+              <ng-container *ngFor="let item of image; let i = index">
+                <ng-container *ngIf="current && NowRank[i] !== undefined">
+                  <ng-container
+                    *ngIf="
+                      NowRank[i] - current.rank === 0 || NowRank[i] === 'new!!'
+                    "
+                  >
+                    <mat-icon class="remove">remove</mat-icon>
+                  </ng-container>
+                  <ng-container *ngIf="NowRank[i] - current.rank > 0">
+                    <mat-icon style="color: green">arrow_drop_up</mat-icon>
+                    &nbsp;+{{ NowRank[i] - current.rank }}
+                  </ng-container>
+                  <ng-container *ngIf="NowRank[i] - current.rank < 0">
+                    <mat-icon style="color: red">arrow_drop_down</mat-icon>
+                    &nbsp;-{{ current.rank - NowRank[i] }}
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+            </div>
           </div>
-          <div class="incard2">
-            <span>สรุปผล</span>
-            <span> - </span>
-          </div>
+
           <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore neque velit eaque dolore error nesciunt optio rerum ratione laborum minima? Deserunt assumenda, nobis alias nam cumque culpa! Est, aut! Velit?</p> -->
         </div>
         <div class="graph">
-          
-            <p-chart type="line" [data]="data" [options]="options"> </p-chart>        
+          <p-chart type="line" [data]="data" [options]="options"> </p-chart>
         </div>
       </div>
     </div>

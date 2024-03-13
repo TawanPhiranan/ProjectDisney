@@ -72,4 +72,10 @@ export class HeaderComponent {
     const queryParams = this.user ? { id: this.user.userID } : null;
     this.router.navigate([route1], { queryParams });
   }
+
+  Choose_route2() {
+    const route2 = this.user ? '/' : '/login';
+    const queryParams = this.user ? { id: this.user.userID } : null;
+    this.router.navigate([route2], { queryParams });
+  }
 }

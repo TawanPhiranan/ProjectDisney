@@ -16,6 +16,7 @@ import { Constants } from '../../config/constants';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from '../login/login.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { HeaderComponent } from '../header/header.component';
 
 
 @Component({
@@ -29,7 +30,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCardModule,
     RouterModule,
     RouterOutlet,
-    HttpClientModule, LoginComponent, MatProgressBarModule,
+    HttpClientModule, LoginComponent, MatProgressBarModule
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
@@ -52,7 +53,8 @@ export class MainComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants,
-    private router: Router) { }
+    private router: Router, private header : HeaderComponent
+    ) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];

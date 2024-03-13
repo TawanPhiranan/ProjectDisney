@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
+import { StatsService } from '../../services/api/stats.service';
+
 
 @Component({
   selector: 'app-edit',
@@ -32,6 +34,8 @@ export class EditComponent {
   login: boolean = false;
   editShow: any;
   updateName: any;
+  today: any;
+
 
   data:
     | {
@@ -68,13 +72,16 @@ export class EditComponent {
   rankAll: any;
   current: any;
 
+
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private http: HttpClient,
     private constants: Constants,
     private router: Router,
+    private stats: StatsService
   ) {}
+
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
@@ -88,6 +95,7 @@ export class EditComponent {
     this.chart();
     this.rankNOW(this.imgID);
     
+    this.loadDataAsync();
   }
 
   callApi(): void {
@@ -125,7 +133,8 @@ export class EditComponent {
       // this.user.username = edit.username;
     });
   }
-
+ 
+  // Graph
   confirmUpdateProfile(imgID: number, imgName: string) {
     let edit = { imgName };
     if (confirm('Are you sure you want to update this information?')) {
@@ -220,4 +229,42 @@ export class EditComponent {
       };
     });
   }
+
+  //สรุปผล
+
+  image: any[] = [];
+  BeforeRank: any[] = [];
+  NowRank: any[] = [];
+  async loadDataAsync() {
+    const Url = this.constants.API_ENDPOINT + '/rank/scoreAll/' + this.imgID;
+    this.http.get(Url).subscribe(async (data: any) => {
+      this.image = data;
+      console.log(this.image);  
+      for (let i = 0; i < this.image.length; i++) {
+        this.BeforeRank.push(await this.stats.getrankYesterday(this.image[i].imgID));
+      }
+      for (let i = 0; i < this.image.length; i++) {
+        if (this.BeforeRank[i].length > 0) {
+          this.NowRank.push(this.BeforeRank[i][0].rank);          
+        } else {
+          this.NowRank.push("new!!");
+        }
+      }
+      console.log(this.NowRank);   
+
+    });
+  }
+  
+
+  // rankToday(imgID: string) {
+  //   const url = this.constants.API_ENDPOINT + `/rank/today/${imgID}`;
+  //   this.http.get(url).subscribe((data: any) => {
+  //       this.today = data;
+  //       console.log(this.today);
+  //   });
+// }
+
+
+
+
 }
