@@ -88,3 +88,18 @@
     background-color: #b5a43f !important; /* เปลี่ยนสีพื้นหลังเป็นสีที่ต้องการ */
 }
 
+.ratings-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px; 
+    color: #ffffff;
+}
+
+.ratings-container span {
+    flex: 1;
+        justify-content: space-between;
+
+    margin: 0 3px;
+}
+
+

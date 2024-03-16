@@ -49,12 +49,18 @@ export class MainComponent implements OnInit {
   scord1: any = 0;
   scord2: any = 0;
   canVote: boolean = true;
-  userID : any;
+  userID: any;
 
+  RatingA: any;
+  RatingB: any;
+
+  // เก็บชื่อภาพที่โหวตแล้ว
+  votedImageName1: string = '';
+  votedImageName2: string = '';
 
   constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants,
-    private router: Router, private header : HeaderComponent
-    ) { }
+    private router: Router, private header: HeaderComponent
+  ) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
@@ -85,7 +91,7 @@ export class MainComponent implements OnInit {
         if (this.scord1 == null) {
           this.scord1 = 0;
         }
-        console.log(this.scord1);
+        console.log("imgID : "+this.imgid1+ " = " +this.scord1);
       });
 
       do {
@@ -100,7 +106,7 @@ export class MainComponent implements OnInit {
         if (this.scord2 == null) {
           this.scord2 = 0;
         }
-        console.log(this.scord2);
+        console.log("imgID : "+this.imgid2+ " = " +this.scord2);
       });
       this.userPro();
 
@@ -111,8 +117,9 @@ export class MainComponent implements OnInit {
     // card 1 
     const url = this.constants.API_ENDPOINT + `/profile/idm?id=${this.imgid1}`;
     this.http.get(url).subscribe((data: any) => {
-      this.user1 = data[0] as Disney; 
+      this.user1 = data[0] as Disney;
       // console.log(this.user1);
+      
     });
     // card 2
     const url1 = this.constants.API_ENDPOINT + `/profile/idm?id=${this.imgid2}`;
@@ -125,6 +132,10 @@ export class MainComponent implements OnInit {
 
   vote(winnerImgId: number, loserImgId: number, check: number) {
 
+    // กำหนดค่าให้กับ votedImageName เมื่อมีการโหวต
+    // this.votedImageName1 = this.img1.imgName;
+    // this.votedImageName2 = this.img2.imgName;
+
     if (this.canVote) {
       this.canVote = false;
       setTimeout(() => {
@@ -135,6 +146,7 @@ export class MainComponent implements OnInit {
     } else {
       console.log('Please wait 10 seconds before voting again.');
     }
+
 
     const url = this.constants.API_ENDPOINT + "/vote";
     const K = 32; // K-factor for Elo Rating
@@ -151,6 +163,8 @@ export class MainComponent implements OnInit {
       const RatingB = K * (0 - loseScore);
       console.log(RatingB);
 
+      this.RatingA = RatingA;
+      this.RatingB = RatingB;
 
       // Send HTTP POST requests to update ratings
       this.http.post(url + '/win', {
@@ -167,8 +181,6 @@ export class MainComponent implements OnInit {
         // console.log(data);
       });
     }
-
-
   }
 
   //เวลาในการสุ่ม
@@ -195,13 +207,13 @@ export class MainComponent implements OnInit {
   // กำหนดเส้นทาง
   Choose_route1() {
     const route = this.user ? '/profiles' : '/login';
-    const queryParams = this.user ? { id: this.user.userID, userID : this.user1.userID} : null;
+    const queryParams = this.user ? { id: this.user.userID, userID: this.user1.userID } : null;
     this.router.navigate([route], { queryParams });
   }
 
   Choose_route2() {
     const route = this.user ? '/profiles' : '/login';
-    const queryParams = this.user ? { id: this.user.userID, userID : this.user2.userID} : null;
+    const queryParams = this.user ? { id: this.user.userID, userID: this.user2.userID } : null;
     this.router.navigate([route], { queryParams });
   }
 

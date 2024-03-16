@@ -160,7 +160,7 @@ export class ProfileComponent {
       url = this.constants.API_ENDPOINT + `/profile/show?userID=${this.id}`;
       this.http.get(url).subscribe((data: any) => {
         this.urlShow = data;
-        console.log(this.urlShow);
+        // console.log(this.urlShow);
       });
     }
   }

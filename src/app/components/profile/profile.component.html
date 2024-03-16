@@ -8,28 +8,34 @@
   <!-- <div *ngIf="urlShow"> -->
   <div class="profile">
     <!-- <div class="profile1"> -->
-      <ng-container *ngFor="let show of urlShowAll">
-        <div class="details" *ngIf="!userID || (this.userID === this.id); else notMatching">
-          <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" />
-          <div>
-            <span class="in">Username</span>
-            <input class="example-form-field" matInput value="{{show.username}}" #username name="username" />
-            <span class="in">Email</span>
-            <input class="example-form-field" matInput value="{{show.email}}" #email name="email" />
-            <span class="in">Password</span>
-            <input class="example-form-field" matInput value="{{show.password}}" #password name="password" />
-          </div>
-          <button mat-raised-button color="primary" style="margin-top: 5%" (click)="confirmUpdateProfile(id, username.value, email.value, password.value)">
-            <span>Save</span>
-          </button>
+    <ng-container *ngFor="let show of urlShowAll">
+      <div class="details" *ngIf="!userID || (this.userID === this.id); else notMatching">
+        <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
+          *ngIf="show.imgUser === null">
+
+        <img class="imgPro" [src]="show.imgUser" *ngIf="show.imgUser !== null">
+        <div>
+          <span class="in">Username</span>
+          <input class="example-form-field" matInput value="{{show.username}}" #username name="username" />
+          <span class="in">Email</span>
+          <input class="example-form-field" matInput value="{{show.email}}" #email name="email" />
+          <span class="in">Password</span>
+          <input class="example-form-field" matInput value="{{show.password}}" #password name="password" />
         </div>
-      </ng-container>
+        <button mat-raised-button color="primary" style="margin-top: 5%"
+          (click)="confirmUpdateProfile(id, username.value, email.value, password.value)">
+          <span>Save</span>
+        </button>
+      </div>
+    </ng-container>
 
     <ng-template #notMatching>
       <ng-container *ngFor="let show of urlShowAll">
         <div class="details">
-          <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" />
-          <div>
+          <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
+          *ngIf="show.imgUser === null">
+
+        <img class="imgPro" [src]="show.imgUser" *ngIf="show.imgUser !== null">          <div>
             <span class="in">Username</span>
             <div class="bordered-span">{{ show.username }}</div>
             <span class="in">Email</span>
