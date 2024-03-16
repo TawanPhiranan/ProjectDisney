@@ -158,10 +158,11 @@ export class MainComponent implements OnInit {
     if (check == 1) {
       // Calculate new ratings
       const RatingA = K * (1 - winScore);
-      console.log(RatingA);
-
+      console.log(`RatingA with ID ${winnerImgId}: ${RatingA}`);
+    
       const RatingB = K * (0 - loseScore);
-      console.log(RatingB);
+      console.log(`RatingB with ID ${loserImgId}: ${RatingB}`);
+    
 
       this.RatingA = RatingA;
       this.RatingB = RatingB;
