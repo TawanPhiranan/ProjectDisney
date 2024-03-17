@@ -140,7 +140,7 @@ export class MainComponent implements OnInit {
       this.canVote = false;
       setTimeout(() => {
         this.canVote = true;
-      }, 10000);
+      }, 5000);
       this.UrlAll();
       this.startCountdown();
     } else {
@@ -185,11 +185,11 @@ export class MainComponent implements OnInit {
   }
 
   //เวลาในการสุ่ม
-  countdown: number = 10; // เวลาที่เหลือในการรอ (วินาที)
+  countdown: number = 5; // เวลาที่เหลือในการรอ (วินาที)
   countdownInterval: any; // ตัวแปรสำหรับ interval
 
   startCountdown() {
-    this.countdown = 10;
+    this.countdown = 5;
     this.countdownInterval = setInterval(() => {
       if (this.countdown > 0) {
         this.countdown--;

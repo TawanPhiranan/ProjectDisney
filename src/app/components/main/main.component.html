@@ -1,85 +1,140 @@
 <body>
+  <div style="padding: 10%">
+    <div class="allcard">
+      <div class="on_card">
+        <div style="color: aliceblue">
+          <span style="font-size: xx-large"
+            >Choose your favorite character image.</span
+          ><br />
+          <span style="font-size: medium">เลือกภาพตัวละครที่คุณชื่นชอบ</span>
+        </div>
+        <br />
+        <div style="display: flex; flex-wrap: wrap; gap: 20px" *ngIf="canVote">
+          <!-- card 1 -->
+          <mat-card class="example-card">
+            <div *ngIf="img1">
+              <mat-card-header *ngIf="user1">
+                <div
+                  mat-card-avatar
+                  class="header-image"
+                  (click)="Choose_route1()"
+                >
+                  <img
+                    src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
+                    width="60px"
+                    *ngIf="user1.imgUser === null"
+                  />
 
-    <div style="padding: 10%;">
-        <div class="allcard">
-            <div class="on_card">
-                <div style="color: aliceblue;">
-                    <span style="font-size: xx-large;">Choose your favorite character image.</span><br>
-                    <span style="font-size: medium;">เลือกภาพตัวละครที่คุณชื่นชอบ</span>
+                  <img
+                    src="{{ user1.imgUser }}"
+                    width="60px"
+                    *ngIf="user1.imgUser !== null"
+                  />
                 </div>
-                <br>
-                <div style="display: flex; flex-wrap: wrap; gap: 20px;" *ngIf="canVote">
-                    <!-- card 1 -->
-                    <mat-card class="example-card">
-                        <div *ngIf="img1">
-                            <mat-card-header *ngIf="user1">
-                                <div mat-card-avatar class="header-image" (click)="Choose_route1()">
-                                    <img src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
-                                    width="60px" *ngIf="user1.imgUser === null">
-
-                                    <img src="{{user1.imgUser}}" width="60px" *ngIf="user1.imgUser !== null">
-                                </div>
-                                <div style="font-size: xx-large; margin-left: 20px;">
-                                    <span>{{user1.username}}</span>
-                                </div>
-                            </mat-card-header>
-                            <div style="display: flex; margin-left: 20px;">
-                                <img mat-card-image src="{{img1.url}}" class="imgPro" (click)="vote(imgid1, imgid2, 1)">
-                            </div>
-                            <mat-card-actions>
-                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorite"
-                                    style="color: red;"></mat-icon>
-                                <span> {{scord1}}</span>
-                            </mat-card-actions>
-                            <div style=" display: flex; font-size: x-large; margin-left: 100px;">
-                                <span>{{ img1.imgName}}</span>
-                            </div>
-                        </div>
-                    </mat-card>
-
-
-                    <!-- card 2 -->
-                    <mat-card class="example-card" style="margin-left: 100px;">
-                        <div *ngIf="img2">
-                            <mat-card-header *ngIf="user2">
-                                <div mat-card-avatar class="header-image" (click)="Choose_route2()">
-                                    <img src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
-                                    width="60px"  *ngIf="user2.imgUser === null">
-
-                                    <img src="{{user2.imgUser}}" width="60px" *ngIf="user2.imgUser !== null">
-                                </div>
-                                <div style="font-size: xx-large; margin-left: 20px;">
-                                    <span>{{user2.username}}</span>
-                                </div>
-                            </mat-card-header>
-                            <div style="display: flex; margin-left: 20px;">
-                                <img mat-card-image src="{{img2.url}}" class="imgPro" (click)="vote(imgid2, imgid1, 1)">
-                            </div>
-                            <mat-card-actions>
-                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorite"
-                                    style="color: red;"></mat-icon>
-                                <span> {{scord2}}</span>
-                            </mat-card-actions>
-                            <div style=" display: flex; font-size: x-large; margin-left: 100px;">
-                                <span>{{ img2.imgName}}</span>
-                            </div>
-                        </div>
-                    </mat-card>
+                <div style="font-size: xx-large; margin-left: 20px">
+                  <span>{{ user1.username }}</span>
                 </div>
-                <div *ngIf="!canVote" class="load">
-                    <mat-progress-bar mode="buffer"></mat-progress-bar>
-                    <p>Please wait {{ countdown }} seconds before voting again.</p>
-                    <!-- <div class="ratings-container">
+              </mat-card-header>
+              <div style="display: flex; margin-left: 20px">
+                <img
+                  mat-card-image
+                  src="{{ img1.url }}"
+                  class="imgPro"
+                  (click)="vote(imgid1, imgid2, 1)"
+                />
+              </div>
+              <mat-card-actions>
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  fontIcon="favorite"
+                  style="color: red"
+                ></mat-icon>
+                <span> {{ scord1 }}</span>
+              </mat-card-actions>
+              <div
+                style="display: flex; font-size: x-large; margin-left: 100px"
+              >
+                <span>{{ img1.imgName }}</span>
+              </div>
+            </div>
+          </mat-card>
+
+          <!-- card 2 -->
+          <mat-card class="example-card" style="margin-left: 100px">
+            <div *ngIf="img2">
+              <mat-card-header *ngIf="user2">
+                <div
+                  mat-card-avatar
+                  class="header-image"
+                  (click)="Choose_route2()"
+                >
+                  <img
+                    src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
+                    width="60px"
+                    *ngIf="user2.imgUser === null"
+                  />
+
+                  <img
+                    src="{{ user2.imgUser }}"
+                    width="60px"
+                    *ngIf="user2.imgUser !== null"
+                  />
+                </div>
+                <div style="font-size: xx-large; margin-left: 20px">
+                  <span>{{ user2.username }}</span>
+                </div>
+              </mat-card-header>
+              <div style="display: flex; margin-left: 20px">
+                <img
+                  mat-card-image
+                  src="{{ img2.url }}"
+                  class="imgPro"
+                  (click)="vote(imgid2, imgid1, 1)"
+                />
+              </div>
+              <mat-card-actions>
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  fontIcon="favorite"
+                  style="color: red"
+                ></mat-icon>
+                <span> {{ scord2 }}</span>
+              </mat-card-actions>
+              <div
+                style="display: flex; font-size: x-large; margin-left: 100px"
+              >
+                <span>{{ img2.imgName }}</span>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+        <div *ngIf="!canVote" class="load">
+          <mat-progress-bar mode="buffer"></mat-progress-bar>
+          <p>Please wait {{ countdown }} seconds before voting again.</p>
+          <!-- <div class="ratings-container">
                         <span>ภาพ {{votedImageName1}} = {{RatingA}}</span>
                         <span>ภาพ {{votedImageName2}} = {{RatingB}}</span>
                     </div> -->
-                    <div class="ratings-container">
-                        <span> {{RatingA}}</span>
-                        <span> {{RatingB}}</span>
-                    </div>
-                </div>
+          <div
+            class="result" 
+          >
+            <div style="display: flex; align-items: center;">
+              <mat-icon class="win"
+                >emoji_events</mat-icon
+              >
+              <span> {{ RatingA }}</span>
             </div>
+            <div style="display: flex; align-items: center;">
+                <mat-icon class="remove"
+                >remove</mat-icon
+              >
+              <span> {{ RatingB }}</span>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-
+  </div>
 </body>
