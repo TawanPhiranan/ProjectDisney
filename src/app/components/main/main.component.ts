@@ -91,7 +91,7 @@ export class MainComponent implements OnInit {
         if (this.scord1 == null) {
           this.scord1 = 0;
         }
-        console.log("imgID : "+this.imgid1+ " = " +this.scord1);
+        console.log("imgID : " + this.imgid1 + " = " + this.scord1);
       });
 
       do {
@@ -106,7 +106,7 @@ export class MainComponent implements OnInit {
         if (this.scord2 == null) {
           this.scord2 = 0;
         }
-        console.log("imgID : "+this.imgid2+ " = " +this.scord2);
+        console.log("imgID : " + this.imgid2 + " = " + this.scord2);
       });
       this.userPro();
 
@@ -119,7 +119,7 @@ export class MainComponent implements OnInit {
     this.http.get(url).subscribe((data: any) => {
       this.user1 = data[0] as Disney;
       // console.log(this.user1);
-      
+
     });
     // card 2
     const url1 = this.constants.API_ENDPOINT + `/profile/idm?id=${this.imgid2}`;
@@ -155,14 +155,40 @@ export class MainComponent implements OnInit {
     const winScore = 1 / (1 + 10 ** ((this.scord2 - this.scord1) / 400));
     const loseScore = 1 / (1 + 10 ** ((this.scord1 - this.scord2) / 400));
 
-    if (check == 1) {
+    if (check == 0) {
       // Calculate new ratings
       const RatingA = K * (1 - winScore);
       console.log(`RatingA with ID ${winnerImgId}: ${RatingA}`);
-    
+
       const RatingB = K * (0 - loseScore);
       console.log(`RatingB with ID ${loserImgId}: ${RatingB}`);
-    
+
+
+      this.RatingA = RatingA;
+      this.RatingB = RatingB;
+
+      // Send HTTP POST requests to update ratings
+      this.http.post(url + '/win', {
+        imgID: winnerImgId,
+        score: RatingA
+      }).subscribe((data: any) => {
+        // console.log(data);
+      });
+
+      this.http.post(url + '/lose', {
+        imgID: loserImgId,
+        score: RatingB
+      }).subscribe((data: any) => {
+        // console.log(data);
+      });
+    } else if (check == 1) {
+      // Calculate new ratings
+      const RatingA = K * (0 - winScore);
+      console.log(`RatingA with ID ${winnerImgId}: ${RatingA}`);
+
+      const RatingB = K * (1 - loseScore);
+      console.log(`RatingB with ID ${loserImgId}: ${RatingB}`);
+
 
       this.RatingA = RatingA;
       this.RatingB = RatingB;
