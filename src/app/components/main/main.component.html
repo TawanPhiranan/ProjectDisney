@@ -67,20 +67,10 @@
         <div *ngIf="!canVote" class="load">
           <mat-progress-bar mode="buffer"></mat-progress-bar>
           <p>Please wait {{ countdown }} seconds before voting again.</p>
-          <!-- <div class="ratings-container">
-                        <span>ภาพ {{votedImageName1}} = {{RatingA}}</span>
-                        <span>ภาพ {{votedImageName2}} = {{RatingB}}</span>
-                    </div> -->
-          <div class="result">
-            <div style="display: flex; align-items: center;">
-              <!-- <mat-icon class="win">emoji_events</mat-icon> -->
-              <span> {{ RatingA }}</span>
+            <div class="ratings-container" style="width: 100%; justify-content: center;">
+              <span style="display: flex; justify-content: center;">ภาพซ้าย {{ RatingA }}</span>
+              <span style="display: flex; justify-content: center;">ภาพขวา {{ RatingB }}</span>
             </div>
-            <div style="display: flex; align-items: center;">
-              <!-- <mat-icon class="remove">remove</mat-icon> -->
-              <span> {{ RatingB }}</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>

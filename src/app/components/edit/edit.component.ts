@@ -70,7 +70,8 @@ export class EditComponent {
   graph: any;
   graphday: any;
   rankAll: any;
-  current: any;
+  current: any = {};
+
 
 
   constructor(
@@ -92,9 +93,8 @@ export class EditComponent {
       this.callApi();
     });
     this.showAll();
-    this.chart();
     this.rankNOW(this.imgID);
-    
+    this.chart();
     this.loadDataAsync();
   }
 
@@ -120,7 +120,7 @@ export class EditComponent {
     this.http.get(url).subscribe((data: any) => {
       if (data) {
         this.editShow = data;
-        console.log(this.editShow);
+        // console.log(this.editShow);
       }
     });
   }
@@ -142,6 +142,7 @@ export class EditComponent {
     } else {
     }
   }
+  
   rankNOW(imgID1: string) {
     const url = this.constants.API_ENDPOINT + `/rank/rankAll`;
     this.http.get(url).subscribe((data: any) => {
@@ -149,7 +150,7 @@ export class EditComponent {
       const index = this.rankAll.findIndex(
         (item: any) => item.imgID === parseInt(imgID1)
       );
-      console.log(index);
+      // console.log(index);
 
       if (index !== -1) {
         this.current = this.rankAll[index];
@@ -158,12 +159,14 @@ export class EditComponent {
         console.log('imgID not found');
       }
     });
+    this.chart();
   }
+  
   chart() {
     const url = this.constants.API_ENDPOINT + `/rank/graph/` + this.imgID;
     this.http.get(url).subscribe((data: any) => {
       this.graph = data;
-      console.log(this.graph);
+      // console.log(this.graph);
 
       const documentStyle = getComputedStyle(document.documentElement);
       const textColor = documentStyle.getPropertyValue('--text-color');
@@ -181,14 +184,17 @@ export class EditComponent {
           year: 'numeric',
         });
       });
+      labels.push('Today'); // เพิ่ม label สำหรับข้อมูลวันนี้
+
       const datascore = this.graph.map((item: { score: any }) => item.score);
+      const todayscore = [this.current.total_score];
 
       this.data = {
-        labels: labels, // นำ labels ที่สร้างไว้มาใส่ตรงนี้
+        labels: labels,// นำ labels ที่สร้างไว้มาใส่ตรงนี้
         datasets: [
           {
-            label: 'First Dataset',
-            data: datascore,
+            label: 'Score ',
+            data: [...datascore, ...todayscore],
             fill: false,
             borderColor: '#f5c518',
             tension: 0.4,
@@ -239,7 +245,7 @@ export class EditComponent {
     const Url = this.constants.API_ENDPOINT + '/rank/scoreAll/' + this.imgID;
     this.http.get(Url).subscribe(async (data: any) => {
       this.image = data;
-      console.log(this.image);  
+      // console.log(this.image);  
       for (let i = 0; i < this.image.length; i++) {
         this.BeforeRank.push(await this.stats.getrankYesterday(this.image[i].imgID));
       }
@@ -250,7 +256,7 @@ export class EditComponent {
           this.NowRank.push("new!!");
         }
       }
-      console.log(this.NowRank);   
+      // console.log(this.NowRank);   
 
     });
   }
