@@ -132,10 +132,6 @@ export class MainComponent implements OnInit {
 
   vote(winnerImgId: number, loserImgId: number, check: number) {
 
-    // กำหนดค่าให้กับ votedImageName เมื่อมีการโหวต
-    // this.votedImageName1 = this.img1.imgName;
-    // this.votedImageName2 = this.img2.imgName;
-
     if (this.canVote) {
       this.canVote = false;
       setTimeout(() => {
@@ -155,7 +151,7 @@ export class MainComponent implements OnInit {
     const winScore = 1 / (1 + 10 ** ((this.scord2 - this.scord1) / 400));
     const loseScore = 1 / (1 + 10 ** ((this.scord1 - this.scord2) / 400));
 
-    if (check == 0) {
+    if (check == 1) {
       // Calculate new ratings
       const RatingA = K * (1 - winScore);
       console.log(`RatingA with ID ${winnerImgId}: ${RatingA}`);
@@ -163,10 +159,6 @@ export class MainComponent implements OnInit {
       const RatingB = K * (0 - loseScore);
       console.log(`RatingB with ID ${loserImgId}: ${RatingB}`);
 
-
-      this.RatingA = RatingA;
-      this.RatingB = RatingB;
-
       // Send HTTP POST requests to update ratings
       this.http.post(url + '/win', {
         imgID: winnerImgId,
@@ -181,29 +173,25 @@ export class MainComponent implements OnInit {
       }).subscribe((data: any) => {
         // console.log(data);
       });
-    } else if (check == 1) {
+    } else if (check == 0) {
       // Calculate new ratings
       const RatingA = K * (0 - winScore);
-      console.log(`RatingA with ID ${winnerImgId}: ${RatingA}`);
+      console.log(`RatingA with ID ${ loserImgId}: ${RatingA}`);
 
       const RatingB = K * (1 - loseScore);
-      console.log(`RatingB with ID ${loserImgId}: ${RatingB}`);
-
-
-      this.RatingA = RatingA;
-      this.RatingB = RatingB;
+      console.log(`RatingB with ID ${winnerImgId}: ${RatingB}`);
 
       // Send HTTP POST requests to update ratings
       this.http.post(url + '/win', {
         imgID: winnerImgId,
-        score: RatingA
+        score: RatingB
       }).subscribe((data: any) => {
         // console.log(data);
       });
 
       this.http.post(url + '/lose', {
         imgID: loserImgId,
-        score: RatingB
+        score: RatingA
       }).subscribe((data: any) => {
         // console.log(data);
       });
