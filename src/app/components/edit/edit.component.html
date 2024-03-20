@@ -16,13 +16,14 @@
           <input class="example-form-field" matInput value="{{ edit.imgName }}" #imgName name="imgName"
             style="text-align: center" />
         </div>
-        <img [src]="edit.url" width="300px" alt="" class="img" />
+        <!-- <div matTooltip="Click on the picture to change." style="cursor: pointer;"> -->
+          <img [src]="edit.url" width="300px" alt="" class="img" />
+        <!-- </div> -->
         <div style="display: flex; flex-direction: row; align-items: center">
           <button mat-icon-button style="color: red" aria-label="Example icon-button with share icon">
             <mat-icon>favorite</mat-icon>
           </button>
           <span style="color: #ffffff">{{ edit.total_score }}</span>&nbsp;&nbsp;&nbsp;
-          <span style="color: #ffffff">(คลิกที่รูปเพื่อแก้ไข)</span>
         </div>
       </div>
       <div class="rank">

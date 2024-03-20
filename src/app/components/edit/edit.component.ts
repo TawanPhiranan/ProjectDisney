@@ -10,6 +10,7 @@ import { Constants } from '../../config/constants';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { StatsService } from '../../services/api/stats.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { StatsService } from '../../services/api/stats.service';
     MatToolbarModule,
     FormsModule,
     ChartModule,
+    MatTooltipModule
   ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
@@ -260,6 +262,7 @@ export class EditComponent {
 
     });
   }
+  
   
 
   // rankToday(imgID: string) {

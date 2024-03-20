@@ -6,6 +6,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Disney } from '../../model/disney_get_res';
 import { Constants } from '../../config/constants';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import {
   ActivatedRoute,
@@ -30,6 +31,7 @@ import { HeaderComponent } from '../header/header.component';
     RouterModule,
     HttpClientModule,
     FormsModule,
+    MatTooltipModule,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
