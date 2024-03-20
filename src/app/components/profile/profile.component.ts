@@ -208,9 +208,22 @@ export class ProfileComponent {
 }
 
 
-  removeImage(url: any) {
-    // เพิ่มโค้ดที่นี่เพื่อลบรูปภาพที่ถูกคลิกออกจาก urlShow
+removeImage(imgID: any) {
+  const confirmed = confirm('Are you sure you want to delete this image?');
+  if (!confirmed) {
+    return;
   }
+
+  const url = this.constants.API_ENDPOINT + `/upload/${imgID}`;
+  this.http.delete(url).subscribe((data: any) => {
+      console.log(data);
+    });
+    setTimeout(() => {
+      this.showImg();
+    }, 3000);
+}
+
+
 
   isValidUser(show: any): boolean {
     return show && this.userID === this.id;
