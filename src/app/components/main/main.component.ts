@@ -159,6 +159,9 @@ export class MainComponent implements OnInit {
       const RatingB = K * (0 - loseScore);
       console.log(`RatingB with ID ${loserImgId}: ${RatingB}`);
 
+      this.RatingA = RatingA;
+      this.RatingB = RatingB;
+
       // Send HTTP POST requests to update ratings
       this.http.post(url + '/win', {
         imgID: winnerImgId,
@@ -180,6 +183,9 @@ export class MainComponent implements OnInit {
 
       const RatingB = K * (1 - loseScore);
       console.log(`RatingB with ID ${winnerImgId}: ${RatingB}`);
+
+      this.RatingA = RatingA;
+      this.RatingB = RatingB;
 
       // Send HTTP POST requests to update ratings
       this.http.post(url + '/win', {
