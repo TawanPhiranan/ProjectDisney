@@ -20,9 +20,14 @@
           <input class="example-form-field" matInput value="{{show.email}}" #email name="email" />
           <span class="in">Password</span>
           <input class="example-form-field" matInput value="{{show.password}}" #password name="password" />
+          <span class="in">Confirm Password</span>
+          <input class="example-form-field" matInput #confirmPassword name="confirmPassword" />
+          <div *ngIf="password.value !== confirmPassword.value && confirmPassword.value !== ''" style="color: red;">Passwords do not match</div>
         </div>
+
         <button mat-raised-button color="primary" style="margin-top: 5%"
-          (click)="confirmUpdateProfile(id, username.value, email.value, password.value)">
+          [disabled]="password.value !== confirmPassword.value && confirmPassword.value === ''"
+          (click)="confirmPassword.value === password.value && confirmUpdateProfile(id, username.value, email.value, password.value)">
           <span>Save</span>
         </button>
       </div>
@@ -59,7 +64,7 @@
             <ng-template #not>
               <img [src]="url.url" alt="User Image">
             </ng-template>
-            <button mat-icon-button class="delete-icon" (click)="removeImage(url)">
+            <button mat-icon-button class="delete-icon" (click)="removeImage(url.imgID)">
               <mat-icon style="color: rgb(13, 10, 10); font-weight: bold;">bookmark_remove</mat-icon>
             </button>
           </div>
