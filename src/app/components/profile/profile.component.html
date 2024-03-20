@@ -10,10 +10,9 @@
     <!-- <div class="profile1"> -->
     <ng-container *ngFor="let show of urlShowAll">
       <div class="details" *ngIf="!userID || (this.userID === this.id); else notMatching">
-        <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
-          *ngIf="show.imgUser === null">
-
-        <img class="imgPro" [src]="show.imgUser" *ngIf="show.imgUser !== null">
+        <input type="file" #fileUpload style="display: none" (change)="onFileSelected($event, 1)">
+        <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" *ngIf="show.imgUser === null" (click)="fileUpload.click()">
+        <img class="imgPro" [src]="show.imgUser" *ngIf="show.imgUser !== null" (click)="fileUpload.click()">
         <div>
           <span class="in">Username</span>
           <input class="example-form-field" matInput value="{{show.username}}" #username name="username" />
@@ -69,7 +68,7 @@
         <ng-container *ngIf="!userID || (this.userID === this.id);">
           <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()">
             <span>+</span>
-            <input type="file" (change)="onFileSelected($event)" #fileUpload style="display: none;">
+            <input type="file" (change)="onFileSelected($event, 0)" #fileUpload style="display: none;">
           </button>
           <button *ngIf="urlShow.length >= 5" class="circle-button" disabled>
             <span>+</span>

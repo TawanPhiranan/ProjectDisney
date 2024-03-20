@@ -80,14 +80,14 @@ export class ProfileComponent {
     this.router.navigate(['/'], { replaceUrl: true });
   }
 
-  onFileSelected(eventData: any) {
+  onFileSelected(eventData: any, uploadType: number) {
     if (eventData?.target?.files && eventData.target.files.length > 0) {
       const selectedFile = eventData.target.files[0];
       console.log('Selected file:', selectedFile);
-      this.handleFileUpload(selectedFile);
+      this.handleFileUpload(selectedFile, uploadType);
     }
   }
-  async handleFileUpload(selectedFile: File) {
+  async handleFileUpload(selectedFile: File, uploadType: number) {
     if (selectedFile) {
       console.log('Uploading..........');
       const url1 = this.constants.API_ENDPOINT + `/upload`;
@@ -99,9 +99,28 @@ export class ProfileComponent {
       const firebaseURL = this.response.url;
       console.log(firebaseURL);
 
-      this.addDB(firebaseURL);
-      this.resetInput();
+      if (uploadType === 0) {
+        this.addDB(firebaseURL);
+        this.resetInput();
+    } else if (uploadType === 1) {
+        this.addProfileToDB(firebaseURL);
     }
+    }
+  }
+
+  addProfileToDB(url: any) {
+    const dbUrl = this.constants.API_ENDPOINT + '/upload/img/profile';
+    this.http
+      .put(dbUrl, {
+        userID: this.id, // ใช้ค่า id ที่ได้จาก queryParams
+        url: url,
+      })
+      .subscribe((data: any) => {
+        console.log(data);
+      });
+      setTimeout(() => {
+        this.showAll();
+      }, 3000);
   }
 
   addDB(url: any): void {
