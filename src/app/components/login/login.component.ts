@@ -41,7 +41,7 @@ export class LoginComponent {
           if (typeID === 1) {
             this.router.navigate(['/'], { queryParams: { id: userID } });
           } else if (typeID === 2) {
-            this.router.navigate(['/adminMember']);
+            this.router.navigate(['/adminMember'],  { queryParams: { id: userID } });
           }
 
         } else {
