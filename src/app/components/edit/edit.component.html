@@ -11,10 +11,19 @@
     <div class="card" *ngFor="let edit of editShow">
       <div class="imgDetails">
         <div style="display: flex; justify-content: center; align-items: center">
-          <!-- <input class="example-form-field" matInput value="{{show.username}}" #username name="username" /> -->
-
-          <input class="example-form-field" matInput value="{{ edit.imgName }}" #imgName name="imgName"
+          <ng-container *ngIf="!(user && user.typeID === 2); else not">
+            <input class="example-form-field" matInput value="{{ edit.imgName }}" #imgName name="imgName"
             style="text-align: center" />
+            <div class="btn1">
+              <button mat-raised-button color="primary" style="background-color: rgb(12, 134, 12)"
+                (click)="confirmUpdateProfile(imgID, imgName.value)" *ngIf="edit">
+                <span>Save</span>
+              </button>
+            </div>
+          </ng-container>
+          <ng-template #not>
+            <div class="bordered-span">{{ edit.imgName }}</div>
+        </ng-template>
         </div>
         <!-- <div matTooltip="Click on the picture to change." style="cursor: pointer;"> -->
           <img [src]="edit.url" width="300px" alt="" class="img" />
@@ -27,12 +36,9 @@
         </div>
       </div>
       <div class="rank">
-        <div class="btn1">
-          <button mat-raised-button color="primary" style="background-color: rgb(12, 134, 12)"
-            (click)="confirmUpdateProfile(imgID, imgName.value)" *ngIf="edit">
-            <span>Save</span>
-          </button>
-        </div>
+        <!-- <ng-container *ngIf="!(user && user.typeID === 2);"> -->
+          
+        <!-- </ng-container> -->
         <div class="card2">
           <div class="incard2">
             <span>Current</span>
