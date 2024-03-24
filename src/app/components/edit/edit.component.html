@@ -13,9 +13,9 @@
         <div style="display: flex; justify-content: center; align-items: center">
           <ng-container *ngIf="!(user && user.typeID === 2); else not">
             <input class="example-form-field" matInput value="{{ edit.imgName }}" #imgName name="imgName"
-            style="text-align: center" />
+              style="text-align: center" />
             <div class="btn1">
-              <button mat-raised-button color="primary" style="background-color: rgb(12, 134, 12)"
+              <button mat-raised-button color="primary" style="height: 50px; background-color: rgb(12, 134, 12) "
                 (click)="confirmUpdateProfile(imgID, imgName.value)" *ngIf="edit">
                 <span>Save</span>
               </button>
@@ -23,9 +23,9 @@
           </ng-container>
           <ng-template #not>
             <div class="bordered-span">{{ edit.imgName }}</div>
-        </ng-template>
+          </ng-template>
         </div>
-          <img [src]="edit.url" width="300px" alt="" class="img" />
+        <img [src]="edit.url" width="300px" alt="" class="img" />
         <div style="display: flex; flex-direction: row; align-items: center">
           <button mat-icon-button style="color: red" aria-label="Example icon-button with share icon">
             <mat-icon>favorite</mat-icon>
@@ -35,7 +35,7 @@
       </div>
       <div class="rank">
         <!-- <ng-container *ngIf="!(user && user.typeID === 2);"> -->
-          
+
         <!-- </ng-container> -->
         <div class="card2">
           <div class="incard2">
