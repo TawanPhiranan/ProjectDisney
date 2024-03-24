@@ -13,9 +13,9 @@
         <div style="display: flex; justify-content: center; align-items: center">
           <ng-container *ngIf="!(user && user.typeID === 2); else not">
             <input class="example-form-field" matInput value="{{ edit.imgName }}" #imgName name="imgName"
-            style="text-align: center" />
+              style="text-align: center" />
             <div class="btn1">
-              <button mat-raised-button color="primary" style="background-color: rgb(12, 134, 12)"
+              <button mat-raised-button color="primary" style="height: 50px; background-color: rgb(12, 134, 12) "
                 (click)="confirmUpdateProfile(imgID, imgName.value)" *ngIf="edit">
                 <span>Save</span>
               </button>
@@ -23,7 +23,7 @@
           </ng-container>
           <ng-template #not>
             <div class="bordered-span">{{ edit.imgName }}</div>
-        </ng-template>
+          </ng-template>
         </div>
         <div matTooltip="Click on the picture to change." style="cursor: pointer;">
           <input type="file" #fileUpload style="display: none" (change)="onFileSelected($event)">
@@ -38,7 +38,7 @@
       </div>
       <div class="rank">
         <!-- <ng-container *ngIf="!(user && user.typeID === 2);"> -->
-          
+
         <!-- </ng-container> -->
         <div class="card2">
           <div class="incard2">
@@ -74,7 +74,6 @@
             </div>
           </div>
 
-          <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore neque velit eaque dolore error nesciunt optio rerum ratione laborum minima? Deserunt assumenda, nobis alias nam cumque culpa! Est, aut! Velit?</p> -->
         </div>
         <div class="graph">
           <p-chart type="line" [data]="data" [options]="options"> </p-chart>

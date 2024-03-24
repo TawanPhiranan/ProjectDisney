@@ -6,7 +6,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Disney } from '../../model/disney_get_res';
 import { Constants } from '../../config/constants';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import {
   ActivatedRoute,
@@ -56,7 +56,7 @@ export class ProfileComponent {
     private http: HttpClient,
     private constants: Constants,
     private router: Router,
-    private header : HeaderComponent
+    private header: HeaderComponent
   ) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -105,9 +105,9 @@ export class ProfileComponent {
       if (uploadType === 0) {
         this.addDB(firebaseURL);
         this.resetInput();
-    } else if (uploadType === 1) {
+      } else if (uploadType === 1) {
         this.addProfileToDB(firebaseURL);
-    }
+      }
     }
   }
 
@@ -121,9 +121,9 @@ export class ProfileComponent {
       .subscribe((data: any) => {
         console.log(data);
       });
-      setTimeout(() => {
-        this.showAll();
-      }, 3000);
+    setTimeout(() => {
+      this.showAll();
+    }, 3000);
   }
 
   addDB(url: any): void {
@@ -216,39 +216,39 @@ export class ProfileComponent {
   }
 
   confirmUpdateProfile(id: any, username: string, email: string, password: string) {
-  if (confirm('Are you sure you want to update this information?')) {
-    let show: any;
-    if (password.trim() === '') {
-      show = { username, email };
+    if (confirm('Are you sure you want to update this information?')) {
+      let show: any;
+      if (password.trim() === '') {
+        show = { username, email };
+      } else {
+        show = { username, email, password };
+      }
+      this.updateProfile(id, show);
     } else {
-      show = { username, email, password };
+      // ไม่ต้องทำอะไรเมื่อผู้ใช้ยกเลิกการอัปเดต
     }
-    this.updateProfile(id, show);
-  } else {
-    // ไม่ต้องทำอะไรเมื่อผู้ใช้ยกเลิกการอัปเดต
-  }
-}
-
-
-removeImage(imgID: any) {
-  const confirmed = confirm('Are you sure you want to delete this image?');
-  if (!confirmed) {
-    return;
   }
 
-  const url = this.constants.API_ENDPOINT + `/upload/${imgID}`;
-  this.http.delete(url).subscribe((data: any) => {
+
+  removeImage(imgID: any) {
+    const confirmed = confirm('Are you sure you want to delete this image?');
+    if (!confirmed) {
+      return;
+    }
+
+    const url = this.constants.API_ENDPOINT + `/upload/${imgID}`;
+    this.http.delete(url).subscribe((data: any) => {
       console.log(data);
     });
     setTimeout(() => {
       this.showImg();
     }, 3000);
-}
+  }
 
 
 
   isValidUser(show: any): boolean {
     return show && this.userID === this.id;
   }
-  
+
 }

@@ -6,7 +6,6 @@ import { MainComponent } from './components/main/main.component';
 import { AdminMemberComponent } from './components/admin-member/admin-member.component';
 import { EditComponent } from './components/edit/edit.component';
 import { RankingComponent } from './components/ranking/ranking.component';
-import { AdminMemberShowComponent } from './components/admin-member-show/admin-member-show.component';
 
 export const routes: Routes = [
     {path: '', component: MainComponent},
@@ -17,5 +16,4 @@ export const routes: Routes = [
     {path: 'edit', component: EditComponent},
     {path: 'ranking', component: RankingComponent},
     {path: 'profiles', component: ProfileComponent},
-    {path: 'adminMemberShow', component: AdminMemberShowComponent},
 ];
