@@ -11,14 +11,11 @@
     <div class="card" *ngFor="let edit of editShow">
       <div class="imgDetails">
         <div style="display: flex; justify-content: center; align-items: center">
-          <!-- <input class="example-form-field" matInput value="{{show.username}}" #username name="username" /> -->
 
           <input class="example-form-field" matInput value="{{ edit.imgName }}" #imgName name="imgName"
             style="text-align: center" />
         </div>
-        <!-- <div matTooltip="Click on the picture to change." style="cursor: pointer;"> -->
           <img [src]="edit.url" width="300px" alt="" class="img" />
-        <!-- </div> -->
         <div style="display: flex; flex-direction: row; align-items: center">
           <button mat-icon-button style="color: red" aria-label="Example icon-button with share icon">
             <mat-icon>favorite</mat-icon>
@@ -67,7 +64,6 @@
             </div>
           </div>
 
-          <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore neque velit eaque dolore error nesciunt optio rerum ratione laborum minima? Deserunt assumenda, nobis alias nam cumque culpa! Est, aut! Velit?</p> -->
         </div>
         <div class="graph">
           <p-chart type="line" [data]="data" [options]="options"> </p-chart>
