@@ -63,6 +63,7 @@ export class ProfileComponent {
       this.id = params['id'];
       // console.log(this.id);
       this.userID = params['userID'];
+      // this.member = params['member'];      
       this.callApi();
     });
     this.showImg();
@@ -73,7 +74,7 @@ export class ProfileComponent {
     const url = this.constants.API_ENDPOINT + `/profile/main?id=${this.id}`;
     this.http.get(url).subscribe((data: any) => {
       this.user = data[0] as Disney;
-      // console.log(this.user);
+      console.log(this.user.typeID);
     });
   }
 

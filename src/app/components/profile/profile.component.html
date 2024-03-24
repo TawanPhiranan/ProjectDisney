@@ -15,7 +15,6 @@
           <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" *ngIf="show.imgUser === null" (click)="fileUpload.click()">
           <img class="imgPro" [src]="show.imgUser" *ngIf="show.imgUser !== null" (click)="fileUpload.click()">
         </div>
-        
         <div>
           <span class="in">Username</span>
           <input class="example-form-field" matInput value="{{show.username}}" #username name="username" />
@@ -41,7 +40,6 @@
         <div class="details">
           <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
             *ngIf="show.imgUser === null">
-
           <img class="imgPro" [src]="show.imgUser" *ngIf="show.imgUser !== null">
           <div>
             <span class="in">Username</span>
@@ -52,14 +50,13 @@
         </div>
       </ng-container>
     </ng-template>
-
     <div class="card">
       <div class="Upload">
         <!-- ใช้ ng-container เพื่อรองรับการใช้งาน *ngFor และ *ngIf พร้อมกัน -->
         <ng-container *ngIf="urlShow">
           <!-- วนลูปแสดงรูปภาพทั้งหมดใน urlShows -->
           <div class="image-container" *ngFor="let url of urlShow">
-            <ng-container *ngIf="!userID || (this.userID === this.id); else not">
+            <ng-container *ngIf="!userID || (userID && userID === id) || (user && user.typeID === 2); else not">
               <a [routerLink]="['/edit']" [queryParams]="{  id: user?.userID, imgID: url.imgID }">
                 <img [src]="url.url" alt="User Image">
               </a>
@@ -73,7 +70,7 @@
           </div>
         </ng-container>
 
-        <ng-container *ngIf="!userID || (this.userID === this.id);">
+        <ng-container *ngIf="!userID || (this.userID === this.id)">
           <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()">
             <span>+</span>
             <input type="file" (change)="onFileSelected($event, 0)" #fileUpload style="display: none;">
