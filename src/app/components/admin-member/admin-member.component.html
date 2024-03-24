@@ -2,7 +2,7 @@
   <!-- back -->
   <div style="padding-top: 100px; padding-left: 3%; color: #ffffff">
     <!-- <a (click)="goBack()" style="cursor: pointer"> -->
- 
+
   </div>
 
   <div style="
@@ -16,9 +16,11 @@
   </div>
 
   <div *ngIf="profile" class="member">
-    <div *ngFor="let user of profile" class="card">
-      <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" *ngIf="user.imgUser === null">
-      <img class="imgPro" [src]="user.imgUser" *ngIf="user.imgUser !== null" >
+    <div *ngFor="let user of profile" class="card" [routerLink]="['/adminMemberShow']"
+      [queryParams]="{ id: this.id , member: user?.userID}">
+      <img class="imgPro" src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg"
+        *ngIf="user.imgUser === null">
+      <img class="imgPro" [src]="user.imgUser" *ngIf="user.imgUser !== null">
 
       <div class="user">
         <h2>{{ user.username }}</h2>
@@ -26,4 +28,5 @@
       </div>
     </div>
   </div>
+
 </body>
