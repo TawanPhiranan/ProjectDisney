@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { StatsService } from '../../services/api/stats.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
@@ -23,7 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     FormsModule,
     ChartModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
@@ -37,7 +37,6 @@ export class EditComponent {
   editShow: any;
   updateName: any;
   today: any;
-
 
   data:
     | {
@@ -73,8 +72,7 @@ export class EditComponent {
   graphday: any;
   rankAll: any;
   current: any = {};
-
-
+  response: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -135,7 +133,7 @@ export class EditComponent {
       // this.user.username = edit.username;
     });
   }
- 
+
   // Graph
   confirmUpdateProfile(imgID: number, imgName: string) {
     let edit = { imgName };
@@ -144,7 +142,7 @@ export class EditComponent {
     } else {
     }
   }
-  
+
   rankNOW(imgID1: string) {
     const url = this.constants.API_ENDPOINT + `/rank/rankAll`;
     this.http.get(url).subscribe((data: any) => {
@@ -163,7 +161,7 @@ export class EditComponent {
     });
     this.chart();
   }
-  
+
   chart() {
     const url = this.constants.API_ENDPOINT + `/rank/graph/` + this.imgID;
     this.http.get(url).subscribe((data: any) => {
@@ -192,7 +190,7 @@ export class EditComponent {
       const todayscore = [this.current.total_score];
 
       this.data = {
-        labels: labels,// นำ labels ที่สร้างไว้มาใส่ตรงนี้
+        labels: labels, // นำ labels ที่สร้างไว้มาใส่ตรงนี้
         datasets: [
           {
             label: 'Score ',
@@ -247,22 +245,75 @@ export class EditComponent {
     const Url = this.constants.API_ENDPOINT + '/rank/scoreAll/' + this.imgID;
     this.http.get(Url).subscribe(async (data: any) => {
       this.image = data;
-      // console.log(this.image);  
+      // console.log(this.image);
       for (let i = 0; i < this.image.length; i++) {
-        this.BeforeRank.push(await this.stats.getrankYesterday(this.image[i].imgID));
+        this.BeforeRank.push(
+          await this.stats.getrankYesterday(this.image[i].imgID)
+        );
       }
       for (let i = 0; i < this.image.length; i++) {
         if (this.BeforeRank[i].length > 0) {
-          this.NowRank.push(this.BeforeRank[i][0].rank);          
+          this.NowRank.push(this.BeforeRank[i][0].rank);
         } else {
-          this.NowRank.push("new!!");
+          this.NowRank.push('new!!');
         }
       }
-      // console.log(this.NowRank);   
-
+      // console.log(this.NowRank);
     });
   }
-  
+
+  // change img vote
+  onFileSelected(eventData: any) {
+    if (eventData?.target?.files && eventData.target.files.length > 0) {
+      const selectedFile = eventData.target.files[0];
+      console.log('Selected file:', selectedFile);
+      this.handleFileUpload(selectedFile);
+    }
+  }
+  async handleFileUpload(selectedFile: File) {
+    if (selectedFile) {
+      console.log('Uploading..........');
+      const url1 = this.constants.API_ENDPOINT + `/upload`;
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+      this.response = await lastValueFrom(this.http.post(url1, formData));
+      // console.log('File uploaded. Response:', this.response);
+
+      const firebaseURL = this.response.url;
+      console.log(firebaseURL);
+
+      this.updateVote(firebaseURL);
+    }
+  }
+
+  updateVote(url: any) {
+    const dbUrl = this.constants.API_ENDPOINT + '/edit/img/change';
+    this.http
+      .put(dbUrl, {
+        url: url,
+        imgID: this.imgID,
+      })
+      .subscribe((data: any) => {
+        console.log(data);
+        this.deleteVote(this.imgID);
+      });
+      setTimeout(() => {
+        this.showAll();
+      }, 3000);
+  }
+
+  deleteVote(imgID: any) {
+    const deleteUrl = this.constants.API_ENDPOINT + '/edit/' + imgID;
+    this.http
+      .delete(deleteUrl, {
+        params: { id: imgID }
+      })
+      .subscribe((data: any) => {
+        console.log(data);
+        // ทำสิ่งที่ต้องการหลังจากลบข้อมูลสำเร็จ
+        this.showAll();
+      });
+  }
   
 
   // rankToday(imgID: string) {
@@ -271,9 +322,5 @@ export class EditComponent {
   //       this.today = data;
   //       console.log(this.today);
   //   });
-// }
-
-
-
-
+  // }
 }

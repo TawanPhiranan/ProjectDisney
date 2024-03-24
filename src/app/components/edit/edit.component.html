@@ -25,9 +25,10 @@
             <div class="bordered-span">{{ edit.imgName }}</div>
         </ng-template>
         </div>
-        <!-- <div matTooltip="Click on the picture to change." style="cursor: pointer;"> -->
-          <img [src]="edit.url" width="300px" alt="" class="img" />
-        <!-- </div> -->
+        <div matTooltip="Click on the picture to change." style="cursor: pointer;">
+          <input type="file" #fileUpload style="display: none" (change)="onFileSelected($event)">
+          <img [src]="edit.url" width="300px" alt="" class="img" (click)="fileUpload.click()"/>
+        </div>
         <div style="display: flex; flex-direction: row; align-items: center">
           <button mat-icon-button style="color: red" aria-label="Example icon-button with share icon">
             <mat-icon>favorite</mat-icon>
