@@ -13,6 +13,7 @@ import { StatsService } from '../../services/api/stats.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { lastValueFrom } from 'rxjs';
 
+
 @Component({
   selector: 'app-edit',
   standalone: true,
@@ -23,7 +24,7 @@ import { lastValueFrom } from 'rxjs';
     MatToolbarModule,
     FormsModule,
     ChartModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
@@ -38,41 +39,44 @@ export class EditComponent {
   updateName: any;
   today: any;
 
+
   data:
     | {
-        labels: string[];
-        datasets: {
-          label: string;
-          data: number[];
-          fill: boolean;
-          borderColor: string;
-          tension: number;
-        }[];
-      }
+      labels: string[];
+      datasets: {
+        label: string;
+        data: number[];
+        fill: boolean;
+        borderColor: string;
+        tension: number;
+      }[];
+    }
     | undefined;
 
   options:
     | {
-        maintainAspectRatio: boolean;
-        aspectRatio: number;
-        plugins: { legend: { labels: { color: string } } };
-        scales: {
-          x: {
-            ticks: { color: string };
-            grid: { color: string; drawBorder: boolean };
-          };
-          y: {
-            ticks: { color: string };
-            grid: { color: string; drawBorder: boolean };
-          };
+      maintainAspectRatio: boolean;
+      aspectRatio: number;
+      plugins: { legend: { labels: { color: string } } };
+      scales: {
+        x: {
+          ticks: { color: string };
+          grid: { color: string; drawBorder: boolean };
         };
-      }
+        y: {
+          ticks: { color: string };
+          grid: { color: string; drawBorder: boolean };
+        };
+      };
+    }
     | undefined;
   graph: any;
   graphday: any;
   rankAll: any;
   current: any = {};
   response: any;
+
+
 
   constructor(
     private route: ActivatedRoute,
@@ -81,7 +85,7 @@ export class EditComponent {
     private constants: Constants,
     private router: Router,
     private stats: StatsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -190,7 +194,7 @@ export class EditComponent {
       const todayscore = [this.current.total_score];
 
       this.data = {
-        labels: labels, // นำ labels ที่สร้างไว้มาใส่ตรงนี้
+        labels: labels,// นำ labels ที่สร้างไว้มาใส่ตรงนี้
         datasets: [
           {
             label: 'Score ',
@@ -245,20 +249,19 @@ export class EditComponent {
     const Url = this.constants.API_ENDPOINT + '/rank/scoreAll/' + this.imgID;
     this.http.get(Url).subscribe(async (data: any) => {
       this.image = data;
-      // console.log(this.image);
+      // console.log(this.image);  
       for (let i = 0; i < this.image.length; i++) {
-        this.BeforeRank.push(
-          await this.stats.getrankYesterday(this.image[i].imgID)
-        );
+        this.BeforeRank.push(await this.stats.getrankYesterday(this.image[i].imgID));
       }
       for (let i = 0; i < this.image.length; i++) {
         if (this.BeforeRank[i].length > 0) {
           this.NowRank.push(this.BeforeRank[i][0].rank);
         } else {
-          this.NowRank.push('new!!');
+          this.NowRank.push("new!!");
         }
       }
-      // console.log(this.NowRank);
+      // console.log(this.NowRank);   
+
     });
   }
 
@@ -312,8 +315,6 @@ export class EditComponent {
       })
       .subscribe((data: any) => {
         console.log(data);
-        // ทำสิ่งที่ต้องการหลังจากลบข้อมูลสำเร็จ
-        this.showAll();
       });
   }
   
@@ -325,16 +326,9 @@ export class EditComponent {
       })
       .subscribe((data: any) => {
         console.log(data);
-        // ทำสิ่งที่ต้องการหลังจากลบข้อมูลสำเร็จ
-        this.showAll();
       });
   }
 
-  // rankToday(imgID: string) {
-  //   const url = this.constants.API_ENDPOINT + `/rank/today/${imgID}`;
-  //   this.http.get(url).subscribe((data: any) => {
-  //       this.today = data;
-  //       console.log(this.today);
-  //   });
-  // }
+
+
 }
