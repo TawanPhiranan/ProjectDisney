@@ -296,9 +296,11 @@ export class EditComponent {
       .subscribe((data: any) => {
         console.log(data);
         this.deleteVote(this.imgID);
+        this.deleteStat(this.imgID);
       });
       setTimeout(() => {
         this.showAll();
+        this.chart() 
       }, 3000);
   }
 
@@ -315,6 +317,18 @@ export class EditComponent {
       });
   }
   
+  deleteStat(imgID: any){
+    const deleteUrl = this.constants.API_ENDPOINT + '/edit/stat/' + imgID;
+    this.http
+      .delete(deleteUrl, {
+        params: { id: imgID }
+      })
+      .subscribe((data: any) => {
+        console.log(data);
+        // ทำสิ่งที่ต้องการหลังจากลบข้อมูลสำเร็จ
+        this.showAll();
+      });
+  }
 
   // rankToday(imgID: string) {
   //   const url = this.constants.API_ENDPOINT + `/rank/today/${imgID}`;
