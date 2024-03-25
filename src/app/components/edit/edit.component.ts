@@ -158,7 +158,7 @@ export class EditComponent {
 
       if (index !== -1) {
         this.current = this.rankAll[index];
-        console.log(this.current);
+        // console.log(this.current);
       } else {
         console.log('imgID not found');
       }

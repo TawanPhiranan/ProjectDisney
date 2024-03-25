@@ -88,7 +88,7 @@ export class RankingComponent {
           this.NowRank.push("new!!");
         }
       }
-      console.log(this.NowRank);   
+      // console.log(this.NowRank);   
 
     });
   }
