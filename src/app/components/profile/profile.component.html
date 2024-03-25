@@ -60,13 +60,13 @@
               <a [routerLink]="['/edit']" [queryParams]="{  id: user?.userID, imgID: url.imgID }">
                 <img [src]="url.url" alt="User Image">
               </a>
+              <button mat-icon-button class="delete-icon" (click)="removeImage(url.imgID)">
+                <mat-icon style="color: rgb(13, 10, 10); font-weight: bold;">bookmark_remove</mat-icon>
+              </button>
             </ng-container>
             <ng-template #not>
               <img [src]="url.url" alt="User Image">
-            </ng-template>
-            <button mat-icon-button class="delete-icon" (click)="removeImage(url.imgID)">
-              <mat-icon style="color: rgb(13, 10, 10); font-weight: bold;">bookmark_remove</mat-icon>
-            </button>
+          </ng-template>
           </div>
         </ng-container>
 

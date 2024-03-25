@@ -303,7 +303,8 @@ export class EditComponent {
       });
       setTimeout(() => {
         this.showAll();
-        this.chart() 
+        this.chart();
+        this.rankNOW(this.imgID);
       }, 3000);
   }
 
@@ -328,7 +329,4 @@ export class EditComponent {
         console.log(data);
       });
   }
-
-
-
 }
