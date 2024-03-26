@@ -7,7 +7,29 @@
           <span style="font-size: medium">เลือกภาพตัวละครที่คุณชื่นชอบ</span>
         </div>
         <br />
-        <div style="display: flex; flex-wrap: wrap; gap: 20px" *ngIf="canVote">
+        <!-- loader -->
+        <ng-template #loader>
+          <div class="loader">
+            <div class="loader__balls">
+              <div class="loader__balls__group">
+                <div class="ball item1"></div>
+                <div class="ball item1"></div>
+                <div class="ball item1"></div>
+              </div>
+              <div class="loader__balls__group">
+                <div class="ball item2"></div>
+                <div class="ball item2"></div>
+                <div class="ball item2"></div>
+              </div>
+              <div class="loader__balls__group">
+                <div class="ball item3"></div>
+                <div class="ball item3"></div>
+                <div class="ball item3"></div>
+              </div>
+            </div>
+          </div>          
+        </ng-template>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px" *ngIf="canVote && img1 && img2 else loader">
           <!-- card 1 -->
           <mat-card class="example-card">
             <div *ngIf="img1">
@@ -35,7 +57,7 @@
               </div>
             </div>
           </mat-card>
-
+          
           <!-- card 2 -->
           <mat-card class="example-card" style="margin-left: 100px">
             <div *ngIf="img2">
@@ -65,7 +87,7 @@
           </mat-card>
         </div>
         <div *ngIf="!canVote" class="load">
-          <mat-progress-bar mode="buffer"></mat-progress-bar>
+          <!-- <mat-progress-bar mode="buffer"></mat-progress-bar> -->
           <p>Please wait {{ countdown }} seconds before voting again.</p>
             <div class="ratings-container" style="width: 100%; justify-content: center;">
               <span style="display: flex; justify-content: center;">ภาพซ้าย {{ RatingA }}</span>

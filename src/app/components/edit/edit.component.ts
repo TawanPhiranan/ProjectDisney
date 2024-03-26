@@ -303,8 +303,8 @@ export class EditComponent {
       });
       setTimeout(() => {
         this.showAll();
-        this.chart();
         this.rankNOW(this.imgID);
+        this.chart();
       }, 3000);
   }
 
