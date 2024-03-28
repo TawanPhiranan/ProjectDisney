@@ -289,6 +289,7 @@ export class EditComponent {
     }
   }
 
+  //update all vote img
   updateVote(url: any) {
     const dbUrl = this.constants.API_ENDPOINT + '/edit/img/change';
     this.http
@@ -308,6 +309,7 @@ export class EditComponent {
       }, 3000);
   }
 
+  // ลบ เเต่ละ table
   deleteVote(imgID: any) {
     const deleteUrl = this.constants.API_ENDPOINT + '/edit/' + imgID;
     this.http
@@ -318,7 +320,7 @@ export class EditComponent {
         console.log(data);
       });
   }
-  
+
   deleteStat(imgID: any){
     const deleteUrl = this.constants.API_ENDPOINT + '/edit/stat/' + imgID;
     this.http

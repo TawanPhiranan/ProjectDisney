@@ -78,6 +78,7 @@ export class RankingComponent {
     this.http.get(Url).subscribe(async (data: any) => {
       this.image = data;
       // console.log(this.image);  
+      // ดึง rank เมื่อวานมา
       for (let i = 0; i < this.image.length; i++) {
         this.BeforeRank.push(await this.stats.getAllDailystats(this.image[i].imgID));
       }

@@ -37,9 +37,7 @@
         </div>
       </div>
       <div class="rank">
-        <!-- <ng-container *ngIf="!(user && user.typeID === 2);"> -->
 
-        <!-- </ng-container> -->
         <div class="card2">
           <div class="incard2">
             <span>Current</span>
@@ -56,9 +54,8 @@
             <div style="display: flex; align-items: center; justify-content: center">
               <ng-container *ngFor="let item of image; let i = index">
                 <ng-container *ngIf="current && NowRank[i] !== undefined">
-                  <ng-container *ngIf="
-                      NowRank[i] - current.rank === 0 || NowRank[i] === 'new!!'
-                    ">
+                  <!-- ตรวจสอบว่าอันดับเมื่อวานขเท่ากับอันดับปัจจุบันหรือไม่ หรือถ้าไม่มีอันดับปัจจุบันเลย จะขึ้น new-->
+                  <ng-container *ngIf="NowRank[i] - current.rank === 0 || NowRank[i] === 'new!!'">
                     <mat-icon class="remove">remove</mat-icon>
                   </ng-container>
                   <ng-container *ngIf="NowRank[i] - current.rank > 0">

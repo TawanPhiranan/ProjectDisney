@@ -35,7 +35,7 @@
         <td>{{ item.imgName }}</td>
         <td>{{ item.total_score }}</td>
         <td>{{ this.NowRank[i] }}</td>
-        <!-- <td>{{ this.NowRank[i]-(i+1) }}</td> -->
+        <!-- ปุ่ม + - -->
         <td style="align-items: center;">
           <ng-container *ngIf="this.NowRank[i] - (i + 1) === 0 || this.NowRank[i] === 'new!!'">
             <mat-icon class="remove">remove</mat-icon>

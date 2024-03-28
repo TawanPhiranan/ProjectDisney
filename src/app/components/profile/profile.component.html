@@ -70,6 +70,7 @@
           </div>
         </ng-container>
 
+        <!-- ปุ่มเพิ่มภาพ  โชว์เเค่เจ้าของไอดี-->
         <ng-container *ngIf="!userID || (this.userID === this.id)">
           <button *ngIf="urlShow.length < 5" class="circle-button" (click)="fileUpload.click()">
             <span>+</span>

@@ -83,6 +83,7 @@ export class ProfileComponent {
     this.router.navigate(['/'], { replaceUrl: true });
   }
 
+  //เช็คว่ามี รูปมั้ย
   onFileSelected(eventData: any, uploadType: number) {
     if (eventData?.target?.files && eventData.target.files.length > 0) {
       const selectedFile = eventData.target.files[0];
@@ -155,7 +156,7 @@ export class ProfileComponent {
     }, 3000);
   }
 
-  //ล้างค่า
+  //ล้างค่ารูป
   resetInput() {
     const inputElement = document.getElementById(
       'fileInput'

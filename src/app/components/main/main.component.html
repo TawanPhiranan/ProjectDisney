@@ -33,7 +33,7 @@
           <!-- card 1 -->
           <mat-card class="example-card">
             <div *ngIf="img1">
-              <mat-card-header *ngIf="user1">
+              <mat-card-header *ngIf="user && user1">
                 <div mat-card-avatar class="header-image" (click)="Choose_route1()">
                   <img src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" width="60px"
                     *ngIf="user1.imgUser === null" />
@@ -61,11 +61,10 @@
           <!-- card 2 -->
           <mat-card class="example-card" style="margin-left: 100px">
             <div *ngIf="img2">
-              <mat-card-header *ngIf="user2">
+              <mat-card-header *ngIf="user && user2">
                 <div mat-card-avatar class="header-image" (click)="Choose_route2()">
                   <img src="https://i.pinimg.com/550x/13/d9/7d/13d97d540be78ef119a9e357b76816a1.jpg" width="60px"
                     *ngIf="user2.imgUser === null" />
-
                   <img src="{{ user2.imgUser }}" width="60px" *ngIf="user2.imgUser !== null" />
                 </div>
                 <div style="font-size: xx-large; margin-left: 20px">
@@ -87,7 +86,7 @@
           </mat-card>
         </div>
         <div *ngIf="!canVote" class="load">
-          <!-- <mat-progress-bar mode="buffer"></mat-progress-bar> -->
+          <!-- การคำนวณคะเเนนโหวต -->
           <p>Please wait {{ countdown }} seconds before voting again.</p>
             <div class="ratings-container" style="width: 100%; justify-content: center;">
               <span style="display: flex; justify-content: center;">ภาพซ้าย {{ RatingA }}</span>
