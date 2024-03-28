@@ -153,8 +153,8 @@ export class MainComponent implements OnInit {
     // Calculate winScore and loseScore
     const winScore = 1 / (1 + 10 ** ((this.scord2 - this.scord1) / 400));
     const loseScore = 1 / (1 + 10 ** ((this.scord1 - this.scord2) / 400));
-     this.winScore  = winScore;
-     this.loseScore = loseScore;
+    this.winScore  = winScore;
+    this.loseScore = loseScore;
 
     if (check == 1) {
       this.check = check;

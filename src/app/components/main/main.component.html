@@ -92,12 +92,12 @@
             <span style="display: flex; justify-content: center;">Img Left  {{ RatingA }}</span>
             <span style="display: flex; justify-content: center;">Img Right {{ RatingB }}</span>
           </div><br>
-          <b><span>การคำนวณคะเเนนโหวต Elo Rating Algorithm</span></b>
-          <span style="color: rgb(254, 195, 106);">Calculate Expected Score of Players</span>
+          <b><span style="font-size: x-large; color: rgb(255, 184, 96);">การคำนวณคะเเนนโหวต Elo Rating Algorithm</span></b>
+          <span style="color: rgb(255, 184, 96)">Calculate Expected Score</span>
           <span>WinScore -> 1 / (1 + 10 ** (({{this.scord2}} - {{this.scord1}}) / 400)) = {{winScore}}</span>
           <span>LoseScore -> 1 / (1 + 10 ** (({{this.scord1}} - {{this.scord2}}) / 400)) = {{loseScore}}</span>
           <br>
-          <span style="color: rgb(254, 195, 106);">Calculate New Score of Players</span>
+          <span style="color:  rgb(255, 184, 96)">Calculate New Score</span>
           <ng-container *ngIf="this.check == 1" >
             <span>WIN Left -> {{K}} * (1 - {{winScore}}) = {{RatingA}}</span>
             <span>LOSE Right -> {{K}} * (0 - {{loseScore}}) = {{RatingB}};</span>
