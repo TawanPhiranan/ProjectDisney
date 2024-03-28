@@ -54,7 +54,7 @@
             <div style="display: flex; align-items: center; justify-content: center">
               <ng-container *ngFor="let item of image; let i = index">
                 <ng-container *ngIf="current && NowRank[i] !== undefined">
-                  <!-- ตรวจสอบว่าอันดับเมื่อวานขเท่ากับอันดับปัจจุบันหรือไม่ หรือถ้าไม่มีอันดับปัจจุบันเลย จะขึ้น new-->
+                  <!-- ตรวจสอบว่าอันดับเมื่อวานเท่ากับอันดับปัจจุบันหรือไม่ หรือถ้าไม่มีอันดับปัจจุบันเลย จะขึ้น new-->
                   <ng-container *ngIf="NowRank[i] - current.rank === 0 || NowRank[i] === 'new!!'">
                     <mat-icon class="remove">remove</mat-icon>
                   </ng-container>

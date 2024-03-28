@@ -53,10 +53,12 @@ export class MainComponent implements OnInit {
 
   RatingA: any;
   RatingB: any;
+  winScore: any;
+  loseScore: any;
+  K: any;
+  check: any;
 
-  // เก็บชื่อภาพที่โหวตแล้ว
-  votedImageName1: string = '';
-  votedImageName2: string = '';
+ 
 
   constructor(private route: ActivatedRoute, private location: Location, private http: HttpClient, private constants: Constants,
     private router: Router, private header: HeaderComponent
@@ -136,8 +138,8 @@ export class MainComponent implements OnInit {
       this.canVote = false;
       setTimeout(() => {
         this.canVote = true;
-      }, 5000);
-      this.UrlAll();
+      }, 7000);
+      // this.UrlAll();
       this.startCountdown();
     } else {
       console.log('Please wait 10 seconds before voting again.');
@@ -146,12 +148,16 @@ export class MainComponent implements OnInit {
 
     const url = this.constants.API_ENDPOINT + "/vote";
     const K = 32; // K-factor for Elo Rating
+    this.K =K;
 
     // Calculate winScore and loseScore
     const winScore = 1 / (1 + 10 ** ((this.scord2 - this.scord1) / 400));
     const loseScore = 1 / (1 + 10 ** ((this.scord1 - this.scord2) / 400));
+     this.winScore  = winScore;
+     this.loseScore = loseScore;
 
     if (check == 1) {
+      this.check = check;
       // Calculate new ratings
       const RatingA = K * (1 - winScore);
       console.log(`RatingA with ID ${winnerImgId}: ${RatingA}`);
@@ -177,6 +183,8 @@ export class MainComponent implements OnInit {
         // console.log(data);
       });
     } else if (check == 0) {
+      this.check = check;
+
       // Calculate new ratings
       const RatingA = K * (0 - winScore);
       console.log(`RatingA with ID ${ loserImgId}: ${RatingA}`);
@@ -214,7 +222,8 @@ export class MainComponent implements OnInit {
       if (this.countdown > 0) {
         this.countdown--;
       } else {
-        clearInterval(this.countdownInterval); // หยุด interval เมื่อเวลาหมด
+        clearInterval(this.countdownInterval);
+        this.UrlAll(); // หยุด interval เมื่อเวลาหมด
       }
     }, 1000); // ระยะเวลาในการเรียกใช้ function ทุกๆ 1 วินาที
   }
